@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CharScan — 提案方向總覽｜給組員的快速理解頁</title>
+<meta name="description" content="CharScan：蔬果廢料→生物炭→AI 低成本驗證→可交易碳權。2026 Net Zero Tech 競賽提案的背景、選題理由、新穎性、設備清單與完整中文企劃。" />
+<style>
+  :root{
+    --bg:#f7f4ef;
+    --surface:#ffffff;
+    --ink:#1c1814;
+    --muted:#6d645a;
+    --char:#23201c;
+    --ember:#cf5a24;
+    --ember-soft:#f6e3d6;
+    --leaf:#3f7d52;
+    --leaf-soft:#e3efe5;
+    --line:#e7e0d6;
+    --shadow:0 1px 2px rgba(28,24,20,.04),0 8px 28px rgba(28,24,20,.06);
+    --r:14px;
+    --maxw:1040px;
+    --space:clamp(3.5rem,2.5rem+4vw,7rem);
+    font-synthesis:none;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:72px}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+    line-height:1.75;font-size:17px;-webkit-font-smoothing:antialiased;letter-spacing:.01em;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  h1,h2,h3{line-height:1.2;letter-spacing:-.01em;font-weight:800}
+  a{color:var(--ember);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(247,244,239,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:var(--maxw);margin:0 auto;padding:12px 22px;display:flex;align-items:center;gap:18px}
+  .brand{font-weight:800;letter-spacing:-.02em;font-size:1.15rem;display:flex;align-items:center;gap:9px}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--ember);box-shadow:0 0 0 4px var(--ember-soft)}
+  .nav-links{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+  .nav-links a{color:var(--muted);font-size:.86rem;font-weight:600;padding:6px 10px;border-radius:8px}
+  .nav-links a:hover{color:var(--ink);background:#fff;text-decoration:none}
+  @media(max-width:760px){.nav-links{display:none}}
+
+  /* hero */
+  .hero{padding:clamp(3rem,2rem+6vw,6rem) 0 clamp(2.5rem,2rem+3vw,4rem);position:relative;overflow:hidden}
+  .hero:before{content:"";position:absolute;inset:0;background:
+    radial-gradient(60% 80% at 85% -10%,var(--ember-soft) 0%,transparent 60%),
+    radial-gradient(50% 70% at 0% 110%,var(--leaf-soft) 0%,transparent 55%);opacity:.7;z-index:0}
+  .hero .wrap{position:relative;z-index:1}
+  .kicker{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ember);background:#fff;border:1px solid var(--line);padding:6px 13px;border-radius:999px;box-shadow:var(--shadow)}
+  .hero h1{font-size:clamp(2.8rem,1.6rem+5.5vw,5.2rem);margin:22px 0 6px;letter-spacing:-.03em}
+  .hero h1 .scan{color:var(--ember)}
+  .hero .slogan{font-size:clamp(1.15rem,1rem+1vw,1.5rem);font-weight:700;color:var(--ink);max-width:22ch;margin:.2rem 0 1.1rem}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-weight:700;font-size:clamp(.95rem,.9rem+.4vw,1.12rem);color:var(--char)}
+  .flow .pill{background:#fff;border:1px solid var(--line);padding:8px 14px;border-radius:10px;box-shadow:var(--shadow)}
+  .flow .arrow{color:var(--ember);font-weight:800}
+  .hero .meta{margin-top:1.5rem;color:var(--muted);font-size:.92rem}
+
+  /* tldr cards */
+  .tldr{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:2.4rem}
+  @media(max-width:760px){.tldr{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+  .card .tag{font-size:.74rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .card.problem .tag{color:#b23b3b}
+  .card.solution .tag{color:var(--ember)}
+  .card.win .tag{color:var(--leaf)}
+  .card h3{font-size:1.12rem;margin:.5rem 0 .4rem}
+  .card p{margin:0;color:var(--muted);font-size:.96rem}
+
+  /* sections */
+  section.block{padding:var(--space) 0;border-top:1px solid var(--line)}
+  .sec-kicker{font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ember)}
+  section.block h2{font-size:clamp(1.7rem,1.3rem+2vw,2.5rem);margin:.5rem 0 1rem;max-width:24ch}
+  .lead{font-size:1.08rem;color:var(--char);max-width:62ch}
+  p{margin:0 0 1rem}
+  .muted{color:var(--muted)}
+
+  /* generic table */
+  .tbl{width:100%;border-collapse:collapse;margin:1.4rem 0;font-size:.95rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+  .tbl th,.tbl td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  .tbl th{background:#fbf9f5;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:800}
+  .tbl tr:last-child td{border-bottom:none}
+  .tbl td b{color:var(--ink)}
+  .yes{color:var(--leaf);font-weight:800}
+  .no{color:#b23b3b;font-weight:800}
+  .mid{color:#b8862b;font-weight:800}
+
+  /* two-col */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:1.2rem}
+  @media(max-width:760px){.two{grid-template-columns:1fr}}
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+  .panel h3{font-size:1.05rem;margin:0 0 .6rem;display:flex;align-items:center;gap:9px}
+  .panel.mat h3 .badge{background:var(--ember-soft);color:var(--ember)}
+  .panel.cs h3 .badge{background:var(--leaf-soft);color:var(--leaf)}
+  .badge{font-size:.7rem;font-weight:800;padding:3px 8px;border-radius:6px;letter-spacing:.04em}
+  ul.clean{margin:0;padding-left:1.1rem}
+  ul.clean li{margin:.35rem 0;color:var(--char)}
+
+  /* dark loop band */
+  .band{background:var(--char);color:#f0ebe4;border-radius:20px;padding:clamp(1.8rem,1.4rem+2vw,3rem);margin-top:1.5rem}
+  .band h3{color:#fff;font-size:1.2rem;margin:0 0 1.3rem}
+  .loop{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:760px){.loop{grid-template-columns:1fr 1fr}}
+  .step{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:16px}
+  .step .n{font-size:.74rem;font-weight:800;color:var(--ember);letter-spacing:.08em}
+  .step h4{margin:.4rem 0 .35rem;font-size:1rem;color:#fff}
+  .step p{margin:0;font-size:.85rem;color:#cfc7bc}
+
+  /* checklist */
+  .check{list-style:none;margin:1.2rem 0;padding:0;display:grid;gap:10px}
+  .check li{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:13px 15px;box-shadow:var(--shadow)}
+  .check .box{flex:none;width:20px;height:20px;border:2px solid var(--ember);border-radius:5px;margin-top:3px}
+  .check li.t1 .box{background:var(--ember)}
+  .check b{color:var(--ink)}
+  .pri{font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:999px;margin-left:8px;white-space:nowrap}
+  .pri.p1{background:var(--ember);color:#fff}
+  .pri.p2{background:#f3e6c9;color:#8a6a16}
+  .pri.p3{background:#eee;color:#777}
+
+  /* callout */
+  .callout{border-left:4px solid var(--ember);background:var(--ember-soft);border-radius:0 12px 12px 0;padding:18px 20px;margin:1.4rem 0}
+  .callout.green{border-color:var(--leaf);background:var(--leaf-soft)}
+  .callout p{margin:0}
+  .callout strong{color:var(--ink)}
+
+  /* six columns proposal */
+  .six{display:grid;gap:14px;margin-top:1.2rem}
+  .six .item{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow)}
+  .six .item h3{font-size:1.05rem;margin:0 0 .5rem}
+  .six .item .en{color:var(--muted);font-weight:700;font-size:.82rem;letter-spacing:.02em}
+  .tagq{display:inline-block;background:#fff3cd;color:#8a6a16;font-size:.72rem;font-weight:700;padding:1px 7px;border-radius:5px}
+
+  /* steps next */
+  .next{counter-reset:s;list-style:none;padding:0;margin:1.2rem 0;display:grid;gap:12px}
+  .next li{counter-increment:s;position:relative;padding-left:48px;min-height:34px;display:flex;align-items:center}
+  .next li:before{content:counter(s);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:9px;background:var(--char);color:#fff;display:grid;place-items:center;font-weight:800}
+
+  footer{border-top:1px solid var(--line);padding:2.5rem 0 3.5rem;color:var(--muted);font-size:.88rem}
+  .src{font-size:.82rem;color:var(--muted)}
+  .src a{font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="dot"></span>CharScan</div>
+    <nav class="nav-links">
+      <a href="#tldr">30秒看懂</a>
+      <a href="#bg">背景</a>
+      <a href="#why">為什麼選</a>
+      <a href="#novel">新穎性</a>
+      <a href="#title">訂題法</a>
+      <a href="#plan">方案分工</a>
+      <a href="#gear">設備清單</a>
+      <a href="#nodata">沒設備也能做</a>
+      <a href="#proposal">中文企劃</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <span class="kicker">2026 Net Zero Tech 淨零排放科技國際競賽 · 永續組（碳移除 / MRV）</span>
+    <h1>Char<span class="scan">Scan</span></h1>
+    <p class="slogan">拍一張照片，驗證一塊炭鎖住了多少碳。</p>
+    <div class="flow">
+      <span class="pill">蔬果廢料</span><span class="arrow">→</span>
+      <span class="pill">熱解製生物炭</span><span class="arrow">→</span>
+      <span class="pill">AI 低成本驗證</span><span class="arrow">→</span>
+      <span class="pill">可交易碳權</span>
+    </div>
+    <p class="meta">這一頁是給組員的方向總覽：為什麼這樣選題、為什麼新穎、參考歷屆怎麼訂題最高勝率、需要什麼設備、沒設備又怎麼辦。</p>
+
+    <div class="tldr" id="tldr">
+      <div class="card problem">
+        <span class="tag">問題</span>
+        <h3>碳驗證太貴</h3>
+        <p>台灣生物炭碳權需求爆棚（2025 年六成產能被預訂），卻沒有便宜的查驗方法——每批都要送昂貴儀器，小農根本驗不起、賣不了碳權。</p>
+      </div>
+      <div class="card solution">
+        <span class="tag">方案</span>
+        <h3>用 AI 取代昂貴機器</h3>
+        <p>材料端把廢料烤成生物炭、測出少量「標準答案」；資工端訓練 AI，看一張照片就即時預測「鎖得牢不牢、值多少碳權」。</p>
+      </div>
+      <div class="card win">
+        <span class="tag">為什麼能贏</span>
+        <h3>科學站得住＋雙強項</h3>
+        <p>生物炭是國際公認 200+ 年永久固碳，免疫「採收釋回」質疑；同時用到材料×資工，對齊歷屆「實體製程＋硬數字」的得獎公式。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 30秒看懂 -->
+<section class="block" id="bg">
+  <div class="wrap">
+    <span class="sec-kicker">30 秒看懂</span>
+    <h2>固碳是什麼？問題在哪？</h2>
+    <p class="lead">先記一個畫面：<b>「碳」就像在空氣和地面之間跑來跑去的小球，我們想把它「關住」。</b></p>
+    <p>植物長大時會把空氣裡的二氧化碳「吸進去」變成身體——等於幫我們把碳從空氣抓下來。<b>「固碳」＝想辦法把抓下來的碳鎖住，不讓它跑回空氣。關越久越好。</b></p>
+
+    <table class="tbl">
+      <thead><tr><th>層次</th><th>問題</th><th>方案</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>第一層<br>（科學）</b></td>
+          <td>種菜雖然吸了碳，但菜被<b>採收、吃掉、爛掉</b>後，碳幾乎全跑回空氣 → 淨關住≈0。就像<b>底部破洞的水桶</b>，留不住。這就是組員擔心被評審打的那一槍。</td>
+          <td>把蔬果廢料<b>隔絕空氣加熱「烤成炭」</b>（生物炭）。炭裡的碳變成細菌咬不動、不會爛的穩定形態，<b>鎖住數百年</b>，國際公認可賣碳權。破洞補起來了。</td>
+        </tr>
+        <tr>
+          <td><b>第二層<br>（我們的主題）</b></td>
+          <td>要證明「這塊炭鎖得牢不牢」靠一個指標，得用<b>昂貴實驗室機器逐批檢測</b>，又慢又貴 → 小農測不起 → 賣不了碳權。</td>
+          <td>用 <b>AI 看照片即時預測</b>品質與碳權價值，把驗證從「小時級、昂貴」變「秒級、便宜」→ 補上市場缺的查驗機制。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <p><strong>碳匯 vs 碳權 一次搞懂：</strong>「碳匯」是裝碳的倉庫；「碳權」是「我幫地球少了一噸碳」的證明書。證明書有兩種賺法——<b>減碳</b>（少排，像少吃）與<b>固碳/移除</b>（真的把碳抓下來鎖住，像抽脂）。組員想過「改走減碳來解套」是對的，但減碳偏農藝行為、用不到團隊強項也較不新穎。<b>生物炭讓你直接站在價值更高、更新穎的「固碳」這一邊，而且不會被打。</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- 為什麼選 -->
+<section class="block" id="why">
+  <div class="wrap">
+    <span class="sec-kicker">選題邏輯</span>
+    <h2>為什麼是這個題目？</h2>
+    <p class="lead">用四個你最在意的限制條件來檢驗，生物炭＋AI 在每一項都贏：</p>
+    <table class="tbl">
+      <thead><tr><th>限制條件</th><th>萵苣原案</th><th>土壤碳匯平台</th><th>CharScan（生物炭＋AI）</th></tr></thead>
+      <tbody>
+        <tr><td>科學站得住（永久性）</td><td class="no">✗ 採收即釋回</td><td class="yes">✓ 土壤有機碳</td><td class="yes">✓✓ 200+ 年永久固碳，全球碳移除額度 34% 來自生物炭</td></tr>
+        <tr><td>用到團隊雙強項（資工＋材料）</td><td class="mid">△</td><td class="no">✗ 丟掉材料、缺農藝專業會被打</td><td class="yes">✓✓ 材料做熱解/檢測，資工做 AI</td></tr>
+        <tr><td>限時可完成</td><td class="mid">△</td><td class="no">✗ 需跨季田間數據</td><td class="yes">✓ 一個下午一爐炭</td></tr>
+        <tr><td>難收集大量數據</td><td class="mid">△</td><td class="no">✗ 需長期田間數據</td><td class="yes">✓ 公開資料集＋少量自製樣品</td></tr>
+        <tr><td>競賽新穎性</td><td class="no">✗ 數字太小</td><td class="yes">✓ 競賽內沒人做</td><td class="yes">✓ 競賽內沒人做，國際上「便宜影像當驗證」也少見</td></tr>
+        <tr><td>對齊得獎公式</td><td class="no">✗</td><td class="no">✗ 純軟體平台</td><td class="yes">✓✓ ＝ 實體製程＋硬數字＋AI</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 新穎性與歷屆 -->
+<section class="block" id="novel">
+  <div class="wrap">
+    <span class="sec-kicker">新穎性 · 參考歷屆得獎</span>
+    <h2>從 20 張得獎海報看出的「得獎公式」</h2>
+    <p class="lead">我把歷屆得獎海報全看過，整理出三條鐵律——這比任何政策分析都重要。</p>
+    <table class="tbl">
+      <thead><tr><th>編號</th><th>主題</th><th>形態</th></tr></thead>
+      <tbody>
+        <tr><td>TWN 01 / 03</td><td>SOEC 電解 / SOFC 氨轉氫</td><td>深度材料、電化學</td></tr>
+        <tr><td>TWN 04 / 08 / 14</td><td>CO₂→氫、CO₂ 電化學加值、CO₂RR</td><td>材料、電化學</td></tr>
+        <tr><td>TWN 11 / 17</td><td>金屬結晶循環、半導體廢料製氫</td><td>材料、循環經濟</td></tr>
+        <tr><td><b>TWN 15（你們的範本）</b></td><td><b>WOW：零廢循環農業，廢棄物→生物製程→捕碳 85%</b></td><td><b>生物製程＋循環經濟</b></td></tr>
+        <tr><td>TWN 19</td><td>AI ＋ 發酵</td><td>生物 ＋ AI</td></tr>
+      </tbody>
+    </table>
+    <div class="two">
+      <div class="panel">
+        <h3>三條鐵律</h3>
+        <ul class="clean">
+          <li><b>幾乎每隊都有「實體技術製程＋一串硬數字」</b>（效率%、kg CO₂e、mW/cm²）。純軟體/平台/政策題在這個材料評審池吃虧。</li>
+          <li><b>沒有任何一隊做過生物炭，也沒人做土壤碳匯 MRV</b> → 兩者在本競賽都新穎，我們選了更適合團隊的那個。</li>
+          <li><b>TWN 15 證明農業/生物循環題能得獎</b>——生物炭完全同一個模子，還能再疊上 AI 層。</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>我們的新穎性鎖死點</h3>
+        <ul class="clean">
+          <li>國際上 ML 多用於「優化產率」（紅海）。</li>
+          <li>CharScan 首創把 AI 當作<b>生物炭碳封存的低成本驗證(MRV)工具</b>，直接綁定國際碳權的永久性判準。</li>
+          <li>補台灣生物炭碳權市場目前明確缺的「查驗機制」缺口。</li>
+          <li>組員原本的影像分析技術延續使用——從分析活蔬菜，轉去分析生物炭。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 訂題法 -->
+<section class="block" id="title">
+  <div class="wrap">
+    <span class="sec-kicker">高勝率訂題法</span>
+    <h2>標題怎麼訂，評審一看就懂</h2>
+    <p class="lead">比賽標題的黃金公式：<b>【好記的短名】：【一句話說清楚技術與價值】</b>。短名負責好記，副標負責回答「用什麼、解決什麼、做什麼」。</p>
+    <div class="callout green">
+      <p style="font-size:1.05rem"><strong>建議完整標題：</strong><br>
+      <b style="color:var(--ember)">CharScan</b>: An AI-Powered Low-Cost System to Verify and Trade Biochar Carbon Removal</p>
+    </div>
+    <table class="tbl">
+      <thead><tr><th>英文名</th><th>白話意思</th><th>強調重點</th></tr></thead>
+      <tbody>
+        <tr><td><b>CharScan</b>（已選）</td><td>「掃描炭」</td><td>拍照/掃描即可驗證的 AI 賣點，像一個 App、科技感強</td></tr>
+        <tr><td>Char-to-Credit</td><td>炭 → 碳權</td><td>三個字說完整個故事，押頭韻好記</td></tr>
+        <tr><td>CarbonLens</td><td>看見碳價值的鏡頭</td><td>強調 AI 影像辨識</td></tr>
+        <tr><td>CharCheck</td><td>驗炭</td><td>強調低成本驗證(MRV)缺口</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 方案分工 -->
+<section class="block" id="plan">
+  <div class="wrap">
+    <span class="sec-kicker">技術方案 · 分工</span>
+    <h2>我們的方案：一個閉環，兩個人各有戲</h2>
+
+    <div class="band">
+      <h3>核心技術閉環</h3>
+      <div class="loop">
+        <div class="step"><div class="n">STEP 1 · 材料</div><h4>製炭</h4><p>蔬果/農業剩餘資材，控溫熱解（如 350/450/550°C）成生物炭。</p></div>
+        <div class="step"><div class="n">STEP 2 · 材料</div><h4>測標準答案</h4><p>元素分析測 H:C、碳含量；TGA 測固定碳，當 AI 的 ground truth。</p></div>
+        <div class="step"><div class="n">STEP 3 · 資工</div><h4>訓練 AI</h4><p>公開資料集＋自製樣品，模型從影像/光譜＋製程參數預測 H:C、CO₂e。</p></div>
+        <div class="step"><div class="n">STEP 4 · 資工</div><h4>驗證輸出</h4><p>報 R²/RMSE，封裝成「拍照→碳封存品質報告」的 demo。</p></div>
+      </div>
+    </div>
+
+    <div class="two">
+      <div class="panel mat">
+        <h3><span class="badge">材料系隊員</span>把廢料變成可信的碳</h3>
+        <ul class="clean">
+          <li>把在地蔬果剩餘資材熱解成生物炭樣品（呼應原本的萵苣切角）。</li>
+          <li>用元素分析儀測碳含量與 <b>H:C 莫耳比</b>（決定碳權永久性的關鍵指標）。</li>
+          <li>（選配）TGA 固定碳、SEM 多孔結構、XRD/Raman 碳穩定性。</li>
+        </ul>
+      </div>
+      <div class="panel cs">
+        <h3><span class="badge">資工系隊員</span>把昂貴檢測變成一張照片</h3>
+        <ul class="clean">
+          <li>用公開生物炭資料庫（數百筆）訓練模型（XGBoost / CNN）。</li>
+          <li>輸入＝原料種類＋熱解溫度＋RGB/NIR 影像；輸出＝H:C、碳含量、封存 CO₂e。</li>
+          <li>以少量自製樣品做本地校正與獨立驗證，報出 R²／RMSE。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 設備清單 -->
+<section class="block" id="gear">
+  <div class="wrap">
+    <span class="sec-kicker">設備清單 · 給材料組員</span>
+    <h2>需要哪些設備？借什麼最划算</h2>
+    <p class="lead">生物炭碳權的科學核心就一個數字——<b>H:C 莫耳比</b>（越低＝鎖得越牢、越值錢）。所以借用火力要集中。</p>
+    <table class="tbl">
+      <thead><tr><th>優先級</th><th>設備 / 檢測</th><th>解鎖什麼</th></tr></thead>
+      <tbody>
+        <tr><td><span class="pri p1">必爭</span></td><td><b>元素分析儀 CHN/CHNS</b></td><td>測 H、C → 算 H:C＝AI 模型的標準答案，也是碳權永久性的法定指標。<b>缺它整個主張變空談。</b></td></tr>
+        <tr><td><span class="pri p1">必爭</span></td><td><b>熱解爐 / 管狀爐</b>（或可控氣氛馬弗爐）</td><td>做出「我們自己的」生物炭樣品＋拿到製程數據。缺它就失去「真的做出來並驗證」的可信度。</td></tr>
+        <tr><td><span class="pri p2">強加分</span></td><td><b>TGA 熱重分析</b></td><td>測固定碳/穩定碳比例，是 H:C 之外第二強的固碳指標。</td></tr>
+        <tr><td><span class="pri p2">新穎性引擎</span></td><td><b>便宜光譜 NIR / 手持光譜</b>（沒有就用 RGB 相機＋固定打光）</td><td>「便宜輸入」端——讓「用幾秒影像取代幾小時檢測」更有說服力。</td></tr>
+        <tr><td><span class="pri p3">次要</span></td><td>SEM / XRD / Raman / BET</td><td>海報視覺與碳穩定性的補充佐證，可省。</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:2.2rem;font-size:1.2rem">給組員：本週首要確認清單</h3>
+    <ul class="check">
+      <li class="t1"><span class="box"></span><div><b>能否借到 CHN/CHNS 元素分析儀？</b><span class="pri p1">第一順位</span><br><span class="muted">能借到就能成案。可問本系/相鄰系所材料或化學實驗室、貴重儀器中心。甚至可送樣付費代測幾個樣。</span></div></li>
+      <li class="t1"><span class="box"></span><div><b>能否借到熱解爐 / 管狀爐 / 馬弗爐？</b><span class="pri p1">第一順位</span><br><span class="muted">做 5～15 個樣品即可，半天一爐。或請有設備的實驗室代烤一爐。</span></div></li>
+      <li><span class="box"></span><div><b>能否借到 TGA？</b><span class="pri p2">加分</span><br><span class="muted">有的話固碳數字更硬。</span></div></li>
+      <li><span class="box"></span><div><b>有沒有便宜 NIR / 手持光譜，或固定打光的相機環境？</b><span class="pri p2">加分</span><br><span class="muted">這是新穎性的輸入端，值得額外爭取。</span></div></li>
+      <li><span class="box"></span><div><b>能否弄到現成生物炭樣品？</b><span class="pri p3">備援</span><br><span class="muted">台灣已有生物炭業者/農場，可「要」一點來測，省下自己烤的步驟。</span></div></li>
+    </ul>
+
+    <div class="callout">
+      <p><strong>一句話給組員：</strong>能借到「<b>CHN 元素分析儀 ＋ 一台能炭化的爐子</b>」就能成案；再借到 <b>TGA</b> 就很穩；其他都是加分。最值得額外爭取的是<b>便宜光譜/NIR</b>，那是我們新穎性的命脈。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 沒設備也能做 -->
+<section class="block" id="nodata">
+  <div class="wrap">
+    <span class="sec-kicker">退路 · 風險拆解</span>
+    <h2>就算完全沒設備，也能用公開資料集做</h2>
+    <p class="lead">這個設計直接把「難收集大量數據」這個限制拆掉。</p>
+    <div class="two">
+      <div class="panel">
+        <h3 style="color:var(--leaf)">✓ 純資料集能做到</h3>
+        <ul class="clean">
+          <li>AI 模型可<b>完全用公開生物炭資料庫</b>訓練（國際有數百筆「原料×溫度→碳含量/H:C」資料，文獻 R² 可達 0.9–0.97）。</li>
+          <li>照樣能報出 <b>R²／RMSE</b>，做出「拍照→預測品質」的 demo 雛形。</li>
+          <li>提案交得出去、邏輯完整、科學站得住，名次預期中上。</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3 style="color:#b23b3b">⚠ 純資料集會少掉的分數</h3>
+        <ul class="clean">
+          <li>少了「我們真的烤出來、也驗證過」的可信度（材料評審很看重）。</li>
+          <li>少了台灣在地原料的本地驗證樣品。</li>
+          <li>「拍照預測」的殺手 demo 說服力會打折。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout green">
+      <p><strong>最低門檻比你想的低很多：</strong>不需要擁有整套實驗室。只要能<b>弄到幾塊生物炭樣品 ＋ 借「元素分析儀」用一次</b>把標準答案測出來，就能把純資料集版本升級成「有真數據、有本地驗證」的<b>衝獎版</b>。擠得出「幾個樣品＋一次檢測」→ 衝獎機率明顯拉高。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 中文企劃 六欄 -->
+<section class="block" id="proposal">
+  <div class="wrap">
+    <span class="sec-kicker">完整中文企劃</span>
+    <h2>對應官方摘要表六欄（英文可直接落地）</h2>
+    <p class="lead">標 <span class="tagq">需實測</span> 的數字＝借到設備後用真值替換；其餘為可引用的錨點。</p>
+    <div class="six">
+      <div class="item">
+        <span class="en">① Introduction of Team</span>
+        <h3>團隊介紹</h3>
+        <p>跨域組合是<b>賣點不是缺口</b>：Materials（熱解製程＋固碳機制＋元素/結構表徵）× Computer Science（影像/光譜 ML、低成本驗證系統）。一句話定位：<i>"A materials–AI team building the cheapest credible way to prove a ton of carbon is permanently locked in biochar."</i> 借到設備則註明合作實驗室；可列在地蔬果產區/農會為場域夥伴。</p>
+      </div>
+      <div class="item">
+        <span class="en">② Creation Motive — Problem-solving & technical value</span>
+        <h3>創作動機：解決問題與技術價值</h3>
+        <p><b>市場痛點：</b>台灣生物炭碳權需求爆發（2025 年 62% 產能被企業預購），但無主管機關、無查驗(MRV)機制 → 信任與規模化卡關。<b>技術痛點：</b>傳統 MRV 要對每批生物炭做元素分析（耗時昂貴），分散小農做不起。<b>技術價值：</b>用 AI 從便宜影像/光譜預測決定碳權價值的永久性指標（H:Corg、固定碳、CO₂e），把單批驗證從「小時級實驗室」壓到「秒級現場」。</p>
+      </div>
+      <div class="item">
+        <span class="en">③ Research Process</span>
+        <h3>研究過程</h3>
+        <p>1. 蒐集在地蔬果剩餘資材 → 控溫熱解製炭。 2. 表徵建標籤：CHN 測 H:C 與 C% <span class="tagq">需實測</span>、TGA 測固定碳 <span class="tagq">需實測</span>。 3. 建資料集＝公開資料庫＋自製樣品。 4. 訓練模型（XGBoost / CNN）：輸入原料種類＋溫度＋影像，輸出 H:C、C%、CO₂e。 5. 驗證報 R²/RMSE <span class="tagq">需實測</span>。 6. 封裝成 MRV 工具（手機/網頁 demo）。</p>
+      </div>
+      <div class="item">
+        <span class="en">④ Brief of Work — Creativity / Technical content & feasibility</span>
+        <h3>作品簡介：創意 / 技術內涵與可行性</h3>
+        <p><b>核心閉環：</b>Waste → Pyrolysis → AI-verified permanence → Tradable credit。<b>創意：</b>首創把 ML 當作生物炭碳封存的低成本驗證代理，綁定國際 H:C 永久性判準，補台灣查驗缺口。<b>可行性：</b>① 生物炭 ML 已是高 R² 成熟領域；② 公開資料集現成；③ 本地樣品需求量小；④ 科學主張免疫「採收釋回」質疑（生物炭固碳 200+ 年，全球碳移除額度 34% 來自生物炭）。</p>
+      </div>
+      <div class="item">
+        <span class="en">⑤ Expected Benefit — 具體量化</span>
+        <h3>預期效益（量化，數字先佔位）</h3>
+        <p><b>MRV 降本/提速：</b>單批驗證 小時級→秒級；對標國際 dMRV 降本 40–90% <span class="tagq">需實測回填</span>。<b>固碳效益：</b>每噸生物炭約封存 2.5–3 噸 CO₂e <span class="tagq">需實測</span>；永久性 H:C&lt;0.7。<b>AI 性能：</b>H:C 預測 R² ＝ <span class="tagq">需實測</span>、C% RMSE ＝ <span class="tagq">需實測</span>。<b>市場：</b>台灣生物炭碳權供不應求（62% 預售）；接軌農業 2040 增匯 1,000 萬噸、碳費 300 元/噸的買方誘因。<b>社會：</b>農業廢棄物加值、農民新收入、減少露天燒除空污。</p>
+      </div>
+      <div class="item">
+        <span class="en">⑥ Project Introduction Video（≤5 min, MPEG-4 雲端連結）</span>
+        <h3>提案影片分鏡</h3>
+        <p>① 痛點：碳權很熱，但沒人能便宜驗證真假（30s）→ ② 閉環動畫（40s）→ ③ 實驗室實拍：原料進爐、生物炭、元素分析儀讀數（60s）→ ④ AI demo：手機拍一張生物炭照片，跳出 H:C/CO₂e 報告（60s）→ ⑤ 數據成績(R²)＋市場規模＋呼籲（60s）。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 下一步 -->
+<section class="block">
+  <div class="wrap">
+    <span class="sec-kicker">下一步</span>
+    <h2>接下來怎麼推進</h2>
+    <ol class="next">
+      <li>組員本週確認 Tier 1 設備（元素分析儀＋炭化爐）能否借到——決定走「完整版」或「概念驗證版」。</li>
+      <li>定稿英文摘要表（1–2 頁 A4，Arial 12）——這是初審評分骨架，最該先定。</li>
+      <li>資工端：選定公開資料集、特徵、模型，跑出第一版 R²/RMSE。</li>
+      <li>材料端：拿著「實驗計畫一頁書」去借設備、做 5–15 個樣品。</li>
+      <li>拍 ≤5 分鐘英文介紹影片。</li>
+    </ol>
+    <p class="muted" style="margin-top:1.5rem">關鍵時程：報名截止 6/25 · 初審複審 6/29–7/8 · 入圍公告 7/10 · 決賽暨頒獎 8/19。所有文件限英語。</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>CharScan</b> · 2026 Net Zero Tech 淨零排放科技國際競賽提案方向總覽</p>
+    <p class="src">主要依據：
+      <a href="https://puro.earth/methodologies/biochar/">Puro.earth 生物炭方法學（H:C 永久性、200+ 年、佔 CORC 34%）</a> ·
+      <a href="https://www.sciencedirect.com/science/article/abs/pii/S0960852423012488">ML 預測生物炭碳含量</a> ·
+      <a href="https://esg.gvm.com.tw/article/32106">生物炭碳權搶購潮（62% 預售）</a> ·
+      <a href="https://csrone.com/topics/8596">台灣本土減碳方法學缺口</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
