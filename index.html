@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>CharScan — 提案方向總覽｜給組員的快速理解頁</title>
-<meta name="description" content="CharScan：蔬果廢料→生物炭→AI 低成本驗證→可交易碳權。2026 Net Zero Tech 競賽提案的背景、選題理由、新穎性、設備清單與完整中文企劃。" />
+<title>CarbonLens — 提案方向總覽｜給組員的快速理解頁</title>
+<meta name="description" content="CarbonLens：用便宜影像/NIR + AI 非破壞性量出植物固了多少碳，校正自實驗室元素分析(CHN)。我們不種碳、不儲碳、不賣碳權——我們做『量碳的尺(MRV)』。萵苣＝模式生物，服務森林/土壤/復育等真實碳庫。2026 Net Zero Tech 競賽提案。" />
 <style>
   :root{
     --bg:#f7f4ef;
@@ -39,7 +39,7 @@
   header.nav{position:sticky;top:0;z-index:50;background:rgba(247,244,239,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .nav-inner{max-width:var(--maxw);margin:0 auto;padding:12px 22px;display:flex;align-items:center;gap:18px}
   .brand{font-weight:800;letter-spacing:-.02em;font-size:1.15rem;display:flex;align-items:center;gap:9px}
-  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--ember);box-shadow:0 0 0 4px var(--ember-soft)}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--leaf);box-shadow:0 0 0 4px var(--leaf-soft)}
   .nav-links{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
   .nav-links a{color:var(--muted);font-size:.86rem;font-weight:600;padding:6px 10px;border-radius:8px}
   .nav-links a:hover{color:var(--ink);background:#fff;text-decoration:none}
@@ -48,16 +48,18 @@
   /* hero */
   .hero{padding:clamp(3rem,2rem+6vw,6rem) 0 clamp(2.5rem,2rem+3vw,4rem);position:relative;overflow:hidden}
   .hero:before{content:"";position:absolute;inset:0;background:
-    radial-gradient(60% 80% at 85% -10%,var(--ember-soft) 0%,transparent 60%),
-    radial-gradient(50% 70% at 0% 110%,var(--leaf-soft) 0%,transparent 55%);opacity:.7;z-index:0}
+    radial-gradient(60% 80% at 85% -10%,var(--leaf-soft) 0%,transparent 60%),
+    radial-gradient(50% 70% at 0% 110%,var(--ember-soft) 0%,transparent 55%);opacity:.7;z-index:0}
   .hero .wrap{position:relative;z-index:1}
-  .kicker{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ember);background:#fff;border:1px solid var(--line);padding:6px 13px;border-radius:999px;box-shadow:var(--shadow)}
+  .kicker{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--leaf);background:#fff;border:1px solid var(--line);padding:6px 13px;border-radius:999px;box-shadow:var(--shadow)}
   .hero h1{font-size:clamp(2.8rem,1.6rem+5.5vw,5.2rem);margin:22px 0 6px;letter-spacing:-.03em}
-  .hero h1 .scan{color:var(--ember)}
-  .hero .slogan{font-size:clamp(1.15rem,1rem+1vw,1.5rem);font-weight:700;color:var(--ink);max-width:22ch;margin:.2rem 0 1.1rem}
+  .hero h1 .scan{color:var(--leaf)}
+  .hero .slogan{font-size:clamp(1.15rem,1rem+1vw,1.5rem);font-weight:700;color:var(--ink);max-width:32ch;margin:.2rem 0 1.1rem}
   .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-weight:700;font-size:clamp(.95rem,.9rem+.4vw,1.12rem);color:var(--char)}
   .flow .pill{background:#fff;border:1px solid var(--line);padding:8px 14px;border-radius:10px;box-shadow:var(--shadow)}
-  .flow .arrow{color:var(--ember);font-weight:800}
+  .flow .arrow{color:var(--leaf);font-weight:800}
+  .flow.second{margin-top:10px;font-size:.92rem;color:var(--muted)}
+  .flow.second .pill{box-shadow:none;background:#fbf9f5}
   .hero .meta{margin-top:1.5rem;color:var(--muted);font-size:.92rem}
 
   /* tldr cards */
@@ -66,15 +68,15 @@
   .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
   .card .tag{font-size:.74rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
   .card.problem .tag{color:#b23b3b}
-  .card.solution .tag{color:var(--ember)}
-  .card.win .tag{color:var(--leaf)}
+  .card.solution .tag{color:var(--leaf)}
+  .card.win .tag{color:var(--ember)}
   .card h3{font-size:1.12rem;margin:.5rem 0 .4rem}
   .card p{margin:0;color:var(--muted);font-size:.96rem}
 
   /* sections */
   section.block{padding:var(--space) 0;border-top:1px solid var(--line)}
-  .sec-kicker{font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ember)}
-  section.block h2{font-size:clamp(1.7rem,1.3rem+2vw,2.5rem);margin:.5rem 0 1rem;max-width:24ch}
+  .sec-kicker{font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--leaf)}
+  section.block h2{font-size:clamp(1.7rem,1.3rem+2vw,2.5rem);margin:.5rem 0 1rem;max-width:28ch}
   .lead{font-size:1.08rem;color:var(--char);max-width:62ch}
   p{margin:0 0 1rem}
   .muted{color:var(--muted)}
@@ -100,30 +102,44 @@
   ul.clean{margin:0;padding-left:1.1rem}
   ul.clean li{margin:.35rem 0;color:var(--char)}
 
+  /* result figures */
+  .figs{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:1.4rem}
+  @media(max-width:760px){.figs{grid-template-columns:1fr}}
+  figure.fig{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)}
+  figure.fig img{width:100%;height:auto;display:block;border-radius:8px}
+  figure.fig figcaption{margin-top:.7rem;font-size:.85rem;color:var(--muted)}
+  figure.fig figcaption b{color:var(--ink)}
+  .statline{display:flex;flex-wrap:wrap;gap:10px;margin:1.2rem 0}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;box-shadow:var(--shadow);flex:1 1 150px}
+  .stat .num{font-size:1.5rem;font-weight:800;color:var(--leaf);line-height:1.1}
+  .stat .num.ember{color:var(--ember)}
+  .stat .lab{font-size:.8rem;color:var(--muted);margin-top:2px}
+
   /* dark loop band */
   .band{background:var(--char);color:#f0ebe4;border-radius:20px;padding:clamp(1.8rem,1.4rem+2vw,3rem);margin-top:1.5rem}
   .band h3{color:#fff;font-size:1.2rem;margin:0 0 1.3rem}
   .loop{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
   @media(max-width:760px){.loop{grid-template-columns:1fr 1fr}}
   .step{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:16px}
-  .step .n{font-size:.74rem;font-weight:800;color:var(--ember);letter-spacing:.08em}
+  .step .n{font-size:.74rem;font-weight:800;color:var(--leaf);letter-spacing:.08em}
   .step h4{margin:.4rem 0 .35rem;font-size:1rem;color:#fff}
   .step p{margin:0;font-size:.85rem;color:#cfc7bc}
 
   /* checklist */
   .check{list-style:none;margin:1.2rem 0;padding:0;display:grid;gap:10px}
   .check li{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:13px 15px;box-shadow:var(--shadow)}
-  .check .box{flex:none;width:20px;height:20px;border:2px solid var(--ember);border-radius:5px;margin-top:3px}
-  .check li.t1 .box{background:var(--ember)}
+  .check .box{flex:none;width:20px;height:20px;border:2px solid var(--leaf);border-radius:5px;margin-top:3px}
+  .check li.t1 .box{background:var(--leaf)}
   .check b{color:var(--ink)}
   .pri{font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:999px;margin-left:8px;white-space:nowrap}
-  .pri.p1{background:var(--ember);color:#fff}
+  .pri.p1{background:var(--leaf);color:#fff}
   .pri.p2{background:#f3e6c9;color:#8a6a16}
   .pri.p3{background:#eee;color:#777}
 
   /* callout */
-  .callout{border-left:4px solid var(--ember);background:var(--ember-soft);border-radius:0 12px 12px 0;padding:18px 20px;margin:1.4rem 0}
-  .callout.green{border-color:var(--leaf);background:var(--leaf-soft)}
+  .callout{border-left:4px solid var(--leaf);background:var(--leaf-soft);border-radius:0 12px 12px 0;padding:18px 20px;margin:1.4rem 0}
+  .callout.ember{border-color:var(--ember);background:var(--ember-soft)}
+  .callout.warn{border-color:#b8862b;background:#fbf2dc}
   .callout p{margin:0}
   .callout strong{color:var(--ink)}
 
@@ -133,6 +149,7 @@
   .six .item h3{font-size:1.05rem;margin:0 0 .5rem}
   .six .item .en{color:var(--muted);font-weight:700;font-size:.82rem;letter-spacing:.02em}
   .tagq{display:inline-block;background:#fff3cd;color:#8a6a16;font-size:.72rem;font-weight:700;padding:1px 7px;border-radius:5px}
+  .tagok{display:inline-block;background:var(--leaf-soft);color:var(--leaf);font-size:.72rem;font-weight:700;padding:1px 7px;border-radius:5px}
 
   /* steps next */
   .next{counter-reset:s;list-style:none;padding:0;margin:1.2rem 0;display:grid;gap:12px}
@@ -148,16 +165,17 @@
 
 <header class="nav">
   <div class="nav-inner">
-    <div class="brand"><span class="dot"></span>CharScan</div>
+    <div class="brand"><span class="dot"></span>CarbonLens</div>
     <nav class="nav-links">
       <a href="#tldr">30秒看懂</a>
-      <a href="#bg">背景</a>
-      <a href="#why">為什麼選</a>
+      <a href="#concept">核心轉念</a>
+      <a href="#judges">評審看什麼</a>
+      <a href="#twn15">借鏡 TWN15</a>
+      <a href="#results">進度與成果</a>
+      <a href="#why">為什麼這樣定位</a>
       <a href="#novel">新穎性</a>
-      <a href="#title">訂題法</a>
       <a href="#plan">方案分工</a>
-      <a href="#gear">設備清單</a>
-      <a href="#nodata">沒設備也能做</a>
+      <a href="#gear">設備與可行性</a>
       <a href="#proposal">中文企劃</a>
     </nav>
   </div>
@@ -167,241 +185,283 @@
 <div class="hero">
   <div class="wrap">
     <span class="kicker">2026 Net Zero Tech 淨零排放科技國際競賽 · 永續組（碳移除 / MRV）</span>
-    <h1>Char<span class="scan">Scan</span></h1>
-    <p class="slogan">拍一張照片，驗證一塊炭鎖住了多少碳。</p>
+    <h1>Carbon<span class="scan">Lens</span></h1>
+    <p class="slogan">我們不種碳、不儲碳、不賣碳權——我們做「量碳的尺」：用一張照片，便宜又非破壞地量出植物固了多少碳。</p>
     <div class="flow">
-      <span class="pill">蔬果廢料</span><span class="arrow">→</span>
-      <span class="pill">熱解製生物炭</span><span class="arrow">→</span>
-      <span class="pill">AI 低成本驗證</span><span class="arrow">→</span>
-      <span class="pill">可交易碳權</span>
+      <span class="pill">便宜影像 / 手持 NIR</span><span class="arrow">→</span>
+      <span class="pill">AI 預測碳量</span><span class="arrow">→</span>
+      <span class="pill">少量元素分析(CHN)校正(真值)</span><span class="arrow">→</span>
+      <span class="pill">低成本碳量測 (MRV)</span>
     </div>
-    <p class="meta">這一頁是給組員的方向總覽：為什麼這樣選題、為什麼新穎、參考歷屆怎麼訂題最高勝率、需要什麼設備、沒設備又怎麼辦。</p>
+    <div class="flow second">
+      <span class="pill">萵苣＝模式生物（把尺調準）</span><span class="arrow">⟶</span>
+      <span class="pill">森林 / 土壤 / 生態復育＝真實碳庫（別人在儲存，我們去量）</span>
+    </div>
+    <p class="meta">這一頁是給組員的方向總覽。<b>核心轉念：萵苣不是碳匯標的，是用來開發/驗證量測技術的「模式生物」（像生物學用大腸桿菌）。</b>我們賣的是量測技術(MRV)，不是碳權，也不做任何燃燒/熱解——這樣紅線全繞開、資工＋材料雙強項都有戲、限時做得出硬數字。</p>
 
     <div class="tldr" id="tldr">
       <div class="card problem">
         <span class="tag">問題</span>
-        <h3>碳驗證太貴</h3>
-        <p>台灣生物炭碳權需求爆棚（2025 年六成產能被預訂），卻沒有便宜的查驗方法——每批都要送昂貴儀器，小農根本驗不起、賣不了碳權。</p>
+        <h3>碳「量不準、量太貴」</h3>
+        <p>全球生物碳移除市場的共同瓶頸是查驗(MRV)：現況要破壞性採樣＋昂貴元素分析逐批做。連台泥養微藻都因「沒方法學/驗不了」拿不到碳權——量測缺口比技術缺口更卡。</p>
       </div>
       <div class="card solution">
         <span class="tag">方案</span>
-        <h3>用 AI 取代昂貴機器</h3>
-        <p>材料端把廢料烤成生物炭、測出少量「標準答案」；資工端訓練 AI，看一張照片就即時預測「鎖得牢不牢、值多少碳權」。</p>
+        <h3>AI 光學「量碳尺」</h3>
+        <p>資工端用便宜影像/NIR 訓練 AI 非破壞預測碳含量；材料端用元素分析(CHN)對少量樣品提供「標準答案」校正。輸出帶<b>信心區間</b>，不確定的才送驗。<b>不燒、不破壞。</b></p>
       </div>
       <div class="card win">
         <span class="tag">為什麼能贏</span>
-        <h3>科學站得住＋雙強項</h3>
-        <p>生物炭是國際公認 200+ 年永久固碳，免疫「採收釋回」質疑；同時用到材料×資工，對齊歷屆「實體製程＋硬數字」的得獎公式。</p>
+        <h3>正中 MRV 賽道＋硬數字</h3>
+        <p>競賽類別就是「碳移除/負排放、MRV」，而 20 隊歷屆海報幾乎無人切農業/影像 MRV——賽道空白。元素分析校正＝實體計量核心＋R²/RMSE 硬數字＋AI，材料×資工各有戲。</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- 30秒看懂 -->
-<section class="block" id="bg">
+<!-- 核心轉念 -->
+<section class="block" id="concept">
   <div class="wrap">
-    <span class="sec-kicker">30 秒看懂</span>
-    <h2>固碳是什麼？問題在哪？</h2>
-    <p class="lead">先記一個畫面：<b>「碳」就像在空氣和地面之間跑來跑去的小球，我們想把它「關住」。</b></p>
-    <p>植物長大時會把空氣裡的二氧化碳「吸進去」變成身體——等於幫我們把碳從空氣抓下來。<b>「固碳」＝想辦法把抓下來的碳鎖住，不讓它跑回空氣。關越久越好。</b></p>
+    <span class="sec-kicker">30 秒看懂 · 核心轉念</span>
+    <h2>關鍵：把萵苣從「碳匯標的」降格成「模式生物」</h2>
+    <p class="lead">之前卡關的根源是——只要主張「萵苣固碳/拿碳權」，科學上就死。轉念之後問題全解：</p>
 
     <table class="tbl">
-      <thead><tr><th>層次</th><th>問題</th><th>方案</th></tr></thead>
+      <thead><tr><th>觀念</th><th>為什麼之前會被打死</th><th>CarbonLens 的正確講法</th></tr></thead>
       <tbody>
         <tr>
-          <td><b>第一層<br>（科學）</b></td>
-          <td>種菜雖然吸了碳，但菜被<b>採收、吃掉、爛掉</b>後，碳幾乎全跑回空氣 → 淨關住≈0。就像<b>底部破洞的水桶</b>，留不住。這就是組員擔心被評審打的那一槍。</td>
-          <td>把蔬果廢料<b>隔絕空氣加熱「烤成炭」</b>（生物炭）。炭裡的碳變成細菌咬不動、不會爛的穩定形態，<b>鎖住數百年</b>，國際公認可賣碳權。破洞補起來了。</td>
+          <td><b>萵苣的角色</b></td>
+          <td class="no">把萵苣當碳匯標的 → 草本本體吸的碳會被吃掉/腐爛，幾週內回大氣，淨庫存變化≈0，沒方法學發碳權。</td>
+          <td class="yes">萵苣＝<b>模式生物（試驗載體）</b>。像生物學用大腸桿菌、阿拉伯芥——快速、便宜、可重現，用來把「量碳技術」調準。<b>從不主張它固碳。</b></td>
         </tr>
         <tr>
-          <td><b>第二層<br>（我們的主題）</b></td>
-          <td>要證明「這塊炭鎖得牢不牢」靠一個指標，得用<b>昂貴實驗室機器逐批檢測</b>，又慢又貴 → 小農測不起 → 賣不了碳權。</td>
-          <td>用 <b>AI 看照片即時預測</b>品質與碳權價值，把驗證從「小時級、昂貴」變「秒級、便宜」→ 補上市場缺的查驗機制。</td>
+          <td><b>我們賣什麼</b></td>
+          <td class="no">賣「碳權」→ 要方法學＋第三方認證＋永久性＋外加性，學生隊限時做不到，也沒有現成方法學可發。</td>
+          <td class="yes">賣「<b>量碳的尺(MRV)</b>」。工研院/台泥都這樣講——主打「固碳技術效益＋量測」，碳權留給下游，自己不跨線。</td>
+        </tr>
+        <tr>
+          <td><b>「捕碳」算不算？</b></td>
+          <td class="no">「捕碳＝碳權」是錯的：碳要算數必須「離開大氣夠久」（封存/替代化石），不是吸進來就好。</td>
+          <td class="yes">捕碳＝可<b>量測</b>的事實；能不能換錢＝看下游耐久化（那是別人的事）。我們專心把「量」這件事做到便宜又準。</td>
         </tr>
       </tbody>
     </table>
 
     <div class="callout">
-      <p><strong>碳匯 vs 碳權 一次搞懂：</strong>「碳匯」是裝碳的倉庫；「碳權」是「我幫地球少了一噸碳」的證明書。證明書有兩種賺法——<b>減碳</b>（少排，像少吃）與<b>固碳/移除</b>（真的把碳抓下來鎖住，像抽脂）。組員想過「改走減碳來解套」是對的，但減碳偏農藝行為、用不到團隊強項也較不新穎。<b>生物炭讓你直接站在價值更高、更新穎的「固碳」這一邊，而且不會被打。</b></p>
+      <p><strong>一句話定位：</strong>「量測」和「碳權」是兩件事。<b>講固碳效益、量固碳量 ＝ 技術，人人能講（工研院等級）；宣稱拿可交易碳權 ＝ 金融商品，要方法學認證。</b>我們站在前者——做<b>全市場都缺的那把尺</b>。儲存碳的事交給大自然（森林、土壤）與專案開發商，<b>我們不種、不儲、不燒，只負責精準又便宜地「量」。</b></p>
     </div>
   </div>
 </section>
 
-<!-- 為什麼選 -->
-<section class="block" id="why">
+<!-- 評審看什麼 -->
+<section class="block" id="judges">
   <div class="wrap">
-    <span class="sec-kicker">選題邏輯</span>
-    <h2>為什麼是這個題目？</h2>
-    <p class="lead">用四個你最在意的限制條件來檢驗，生物炭＋AI 在每一項都贏：</p>
+    <span class="sec-kicker">最高勝率 · 從決賽逐字稿歸納</span>
+    <h2>評審反覆追問的五件事 → 我們怎麼答</h2>
+    <p class="lead">從 2025 決賽實況歸納評審最在意的五點。每一點都要有現成答案——這是「最高勝率形狀」的骨架。</p>
     <table class="tbl">
-      <thead><tr><th>限制條件</th><th>萵苣原案</th><th>土壤碳匯平台</th><th>CharScan（生物炭＋AI）</th></tr></thead>
+      <thead><tr><th>評審必問</th><th>CarbonLens 的答案</th></tr></thead>
       <tbody>
-        <tr><td>科學站得住（永久性）</td><td class="no">✗ 採收即釋回</td><td class="yes">✓ 土壤有機碳</td><td class="yes">✓✓ 200+ 年永久固碳，全球碳移除額度 34% 來自生物炭</td></tr>
-        <tr><td>用到團隊雙強項（資工＋材料）</td><td class="mid">△</td><td class="no">✗ 丟掉材料、缺農藝專業會被打</td><td class="yes">✓✓ 材料做熱解/檢測，資工做 AI</td></tr>
-        <tr><td>限時可完成</td><td class="mid">△</td><td class="no">✗ 需跨季田間數據</td><td class="yes">✓ 一個下午一爐炭</td></tr>
-        <tr><td>難收集大量數據</td><td class="mid">△</td><td class="no">✗ 需長期田間數據</td><td class="yes">✓ 公開資料集＋少量自製樣品</td></tr>
-        <tr><td>競賽新穎性</td><td class="no">✗ 數字太小</td><td class="yes">✓ 競賽內沒人做</td><td class="yes">✓ 競賽內沒人做，國際上「便宜影像當驗證」也少見</td></tr>
-        <tr><td>對齊得獎公式</td><td class="no">✗</td><td class="no">✗ 純軟體平台</td><td class="yes">✓✓ ＝ 實體製程＋硬數字＋AI</td></tr>
+        <tr><td><b>① 硬數據＋國際比較</b><br>「你準度多少？比現況好嗎？」</td><td>報<b>影像/NIR → 碳含量的 R²／RMSE</b>（CHN 當真值）；對標傳統元素分析（破壞性、小時級、數十美金/件）→ 非破壞、秒級、近乎零邊際成本。先用<b>公開作物光譜資料</b>跑概念驗證 R²，再用自種萵苣＋CHN 做自有數據。</td></tr>
+        <tr><td><b>② 真實、做得出、撐得住</b><br>不是概念或模擬</td><td>萵苣分批採收做出<b>生物量/碳含量梯度</b>＝真樣品、真量測；模型 pipeline（含不確定度分流）已建好，非模擬。</td></tr>
+        <tr><td><b>③ 成本與商業化</b><br>「成本多低？怎麼規模化？」</td><td>把碳量測從「破壞性採樣＋貴儀器逐件」壓到「拍照＋少量送驗校正」；服務對象＝缺便宜 MRV 的<b>造林/土壤碳專案、農戶、復育案、碳權開發商</b>。</td></tr>
+        <tr><td><b>④ 團隊專業完整</b><br>缺領域專家會被當場打（前車之鑑 TWN02：只有營養師被質疑憑色彩判療效）</td><td>材料（元素/光學表徵＝量測可信度與計量）＋資工（ML/系統）雙覆蓋；<b>碳權方法學/土壤/農藝</b>明列合作顧問補缺口。</td></tr>
+        <tr><td><b>⑤ AI 智慧到底在哪</b><br>不能只說「我們用了 AI」</td><td>講清楚<b>輸入→輸出→訓練→指標</b>：輸入便宜光學量測，輸出碳含量＋<b>信心區間</b>；報 R²/RMSE；模型<b>知道自己何時不確定</b>，自動把臨界樣品轉送實驗室——這正是可信 MRV 該有的行為。</td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<!-- 新穎性與歷屆 -->
-<section class="block" id="novel">
+<!-- 借鏡 TWN15 通俗解說 -->
+<section class="block" id="twn15">
   <div class="wrap">
-    <span class="sec-kicker">新穎性 · 參考歷屆得獎</span>
-    <h2>從 20 張得獎海報看出的「得獎公式」</h2>
-    <p class="lead">我把歷屆得獎海報全看過，整理出三條鐵律——這比任何政策分析都重要。</p>
-    <table class="tbl">
-      <thead><tr><th>編號</th><th>主題</th><th>形態</th></tr></thead>
-      <tbody>
-        <tr><td>TWN 01 / 03</td><td>SOEC 電解 / SOFC 氨轉氫</td><td>深度材料、電化學</td></tr>
-        <tr><td>TWN 04 / 08 / 14</td><td>CO₂→氫、CO₂ 電化學加值、CO₂RR</td><td>材料、電化學</td></tr>
-        <tr><td>TWN 11 / 17</td><td>金屬結晶循環、半導體廢料製氫</td><td>材料、循環經濟</td></tr>
-        <tr><td><b>TWN 15（你們的範本）</b></td><td><b>WOW：零廢循環農業，廢棄物→生物製程→捕碳 85%</b></td><td><b>生物製程＋循環經濟</b></td></tr>
-        <tr><td>TWN 19</td><td>AI ＋ 發酵</td><td>生物 ＋ AI</td></tr>
-      </tbody>
-    </table>
+    <span class="sec-kicker">借鏡得獎隊 · 通俗解說</span>
+    <h2>TWN15「WOW 全資源化循環農業」在做什麼？我們學什麼？</h2>
+    <p class="lead">這是去年農業/固碳賽道最相關的得獎隊（台大＋高科大）。先用大白話拆解它，再抓出我們該抄的「得獎手法」。</p>
+
     <div class="two">
       <div class="panel">
-        <h3>三條鐵律</h3>
+        <h3 style="color:var(--leaf)">🌱 一句話：把農業廢棄物「吃乾抹淨」還順便抓碳</h3>
         <ul class="clean">
-          <li><b>幾乎每隊都有「實體技術製程＋一串硬數字」</b>（效率%、kg CO₂e、mW/cm²）。純軟體/平台/政策題在這個材料評審池吃虧。</li>
-          <li><b>沒有任何一隊做過生物炭，也沒人做土壤碳匯 MRV</b> → 兩者在本競賽都新穎，我們選了更適合團隊的那個。</li>
-          <li><b>TWN 15 證明農業/生物循環題能得獎</b>——生物炭完全同一個模子，還能再疊上 AI 層。</li>
+          <li><b>第一隻菌（酵母）</b>：把稻稈等農業廢棄物<b>發酵</b>，變成有用的「揮發性脂肪酸(VFAs)」——等於把垃圾變成可賣的化學原料。</li>
+          <li><b>第二隻菌（光合菌 R. palustris）</b>：會行光合作用、<b>把二氧化碳吃掉</b>（生物固碳/CCU），順手淨化廢水。</li>
+          <li><b>合起來</b>＝一個「廢棄物→原料＋固碳＋淨水」的零廢棄循環，再把產物施回稻田。</li>
         </ul>
       </div>
       <div class="panel">
-        <h3>我們的新穎性鎖死點</h3>
+        <h3 style="color:var(--ember)">📊 它端出的硬數字（評審就吃這套）</h3>
         <ul class="clean">
-          <li>國際上 ML 多用於「優化產率」（紅海）。</li>
-          <li>CharScan 首創把 AI 當作<b>生物炭碳封存的低成本驗證(MRV)工具</b>，直接綁定國際碳權的永久性判準。</li>
-          <li>補台灣生物炭碳權市場目前明確缺的「查驗機制」缺口。</li>
-          <li>組員原本的影像分析技術延續使用——從分析活蔬菜，轉去分析生物炭。</li>
+          <li>光合菌 <b>捕 CO₂ ~85%</b>、<b>7 天固碳 &gt;65%</b>。</li>
+          <li>施回水稻田：田間<b>減 40% CO₂e</b>，而且<b>稔實率 +34%、千粒重 +20%</b>。</li>
+          <li>全系統<b>減碳 40–75% CO₂e</b>；副產物 VFAs <b>淨利 +96%</b>。</li>
         </ul>
       </div>
+    </div>
+
+    <div class="callout ember">
+      <p><strong>我們要抄的三個得獎手法：</strong>
+      ① <b>「減碳 + 增產」雙贏敘事</b>——它不只說救地球，還說「農民收成更多、更賺錢」。評審愛能落地賺錢的故事。我們也要講：CarbonLens 讓農戶/專案<b>第一次驗得起碳、進得了碳權市場</b>，是省錢與新收入。
+      ② <b>一串實證的百分比數字</b>（85%、+34%、+96%）——不是概念。我們對應的就是 <b>R²/RMSE ＋ 成本/速度對比</b>。
+      ③ <b>有具體量測骨幹</b>——它有菌、有發酵、有田。我們的「實體」＝<b>樣品製備＋元素分析校正＋光學量測裝置</b>，避免被當純軟體。</p>
+    </div>
+
+    <div class="callout warn">
+      <p><strong>但要注意分野（這正是我們的生態位）：</strong>TWN15 是「<b>自己做固碳/CCU</b>」——它自己固碳，所以要扛永久性、會被問「碳關多久」。<b>CarbonLens 不做固碳、不燃燒，做的是量它們固了多少碳的「尺」</b>——我們是賣鏟子給淘金客的人，不必扛永久性那一槍，反而能服務 TWN15 這類所有固碳專案。差異化清楚。</p>
     </div>
   </div>
 </section>
 
-<!-- 訂題法 -->
-<section class="block" id="title">
+<!-- 進度與成果 -->
+<section class="block" id="results">
   <div class="wrap">
-    <span class="sec-kicker">高勝率訂題法</span>
-    <h2>標題怎麼訂，評審一看就懂</h2>
-    <p class="lead">比賽標題的黃金公式：<b>【好記的短名】：【一句話說清楚技術與價值】</b>。短名負責好記，副標負責回答「用什麼、解決什麼、做什麼」。</p>
-    <div class="callout green">
-      <p style="font-size:1.05rem"><strong>建議完整標題：</strong><br>
-      <b style="color:var(--ember)">CharScan</b>: An AI-Powered Low-Cost System to Verify and Trade Biochar Carbon Removal</p>
+    <span class="sec-kicker">目前進度 · 誠實盤點</span>
+    <h2>進度與成果：已有什麼、6/25 前補什麼</h2>
+    <p class="lead">純萵苣版不靠任何燃燒/生物炭。下面誠實列出「現在已經有的」與「報名前要補上的硬數字」，路徑清楚、做得到。</p>
+
+    <div class="two">
+      <div class="panel cs">
+        <h3 style="color:var(--leaf)">✓ 現在已經有的</h3>
+        <ul class="clean">
+          <li><b>影像 pipeline 雛形</b>：萵苣去背 → 綠色冠層擷取 → G 通道特徵（綠色面積比 0.27%、峰值 G≈196）。這是「光學特徵」端的起點。</li>
+          <li><b>MRV 決策機制設計</b>：模型輸出帶信心區間、臨界自動送驗的架構已成形（不確定度分流邏輯通用，與作物無關）。</li>
+          <li>市場與紅線論證完整（量測 vs 碳權、模式生物定位）。</li>
+        </ul>
+      </div>
+      <div class="panel mat">
+        <h3 style="color:var(--ember)">◷ 6/25 前要補的硬數字</h3>
+        <ul class="clean">
+          <li><b>概念驗證 R²（這週可做、零硬體）</b>：拿公開「作物/葉片光譜 ↔ 生物量/碳」資料集，跑「光學特徵 → 碳/生物量」回歸，先報一個 R²/RMSE，證明方法會動。</li>
+          <li><b>自有數據（入圍後）</b>：自種萵苣分批採收 → 控光拍照＋NIR → 少量 CHN 測碳含量 → 報自有 R²/RMSE。</li>
+        </ul>
+      </div>
     </div>
+
+    <div class="callout">
+      <p><strong>定位（給組員）：</strong>我們不像舊版用「生物炭公開資料」當成績——純萵苣版的硬數字來自<b>「作物光學特徵 → 生物量碳」</b>。報名當天先用<b>公開作物資料的概念驗證 R²</b>頂著，入圍後用<b>自種萵苣＋CHN</b>換成自有真值。整條路<b>完全不需要燃燒、熱解或任何生物炭</b>。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 為什麼這樣定位 -->
+<section class="block" id="why">
+  <div class="wrap">
+    <span class="sec-kicker">定位邏輯</span>
+    <h2>為什麼用「模式生物 + 量碳尺」這個形狀？</h2>
+    <p class="lead">用你最在意的限制條件檢驗，這個定位在每一項都站得住：</p>
     <table class="tbl">
-      <thead><tr><th>英文名</th><th>白話意思</th><th>強調重點</th></tr></thead>
+      <thead><tr><th>限制條件</th><th>萵苣＝碳匯標的（舊）</th><th>萵苣＝模式生物 ＋ AI 量碳尺（CarbonLens）</th></tr></thead>
       <tbody>
-        <tr><td><b>CharScan</b>（已選）</td><td>「掃描炭」</td><td>拍照/掃描即可驗證的 AI 賣點，像一個 App、科技感強</td></tr>
-        <tr><td>Char-to-Credit</td><td>炭 → 碳權</td><td>三個字說完整個故事，押頭韻好記</td></tr>
-        <tr><td>CarbonLens</td><td>看見碳價值的鏡頭</td><td>強調 AI 影像辨識</td></tr>
-        <tr><td>CharCheck</td><td>驗炭</td><td>強調低成本驗證(MRV)缺口</td></tr>
+        <tr><td>科學站得住（紅線）</td><td class="no">✗ 採收即釋回、沒方法學發碳權</td><td class="yes">✓✓ 完全不主張萵苣固碳，只主張「我會量碳」——紅線全繞開</td></tr>
+        <tr><td>用到團隊雙強項</td><td class="mid">△ 偏純影像</td><td class="yes">✓✓ 資工＝AI/影像；材料＝元素分析(CHN)＋光學量測計量/表徵</td></tr>
+        <tr><td>正中競賽賽道</td><td class="no">✗ 碳權灌水會被打</td><td class="yes">✓✓ 類別＝碳移除/負排放/<b>MRV</b>，直接命中且賽道空白</td></tr>
+        <tr><td>限時可完成硬數字</td><td class="no">✗ 數字太小、論述弱</td><td class="yes">✓ 公開作物資料先跑概念驗證 R²，萵苣長得快可分批做梯度</td></tr>
+        <tr><td>對齊得獎公式（實體＋硬數字）</td><td class="no">✗ 純軟體</td><td class="yes">✓ 元素分析/光學量測裝置＝實體計量核心；報 R²/RMSE</td></tr>
+        <tr><td>不燒/不儲/不踩固碳</td><td class="mid">△</td><td class="yes">✓✓ 純量測，不做燃燒/熱解/儲存，立場乾淨</td></tr>
       </tbody>
     </table>
+    <p class="muted" style="font-size:.9rem">紅線提醒：草本本體吸的碳屬「biogenic 短循環」，被吃/腐爛後幾週回大氣，淨庫存變化≈0；碳要算數必須搬進耐久庫或替代化石——那是別人的事。CarbonLens 不去當那個庫，而是去當「量任何庫的尺」。</p>
+  </div>
+</section>
+
+<!-- 新穎性 誠實版 -->
+<section class="block" id="novel">
+  <div class="wrap">
+    <span class="sec-kicker">新穎性 · 誠實定位</span>
+    <h2>我們的新穎性在哪（以及不在哪）</h2>
+    <p class="lead">誠實面對：「用光譜/影像預測生物量或碳」本身已是活躍研究。我們的價值不是發明它，而是把它<b>做成一把能用、會自報信心、能裝到任何固碳專案上的 MRV 尺，補上市場缺口</b>。</p>
+    <div class="two">
+      <div class="panel">
+        <h3 style="color:var(--muted)">✗ 不宣稱是我們發明的</h3>
+        <ul class="clean">
+          <li>葉片綠度/光譜 → 生物量/氮是成熟領域（NDVI/SPAD）。</li>
+          <li>近紅外(NIR) → 有機碳/成分也有大量文獻支持。</li>
+          <li>→ 好消息：可行性<b>已被文獻驗證、技術風險低</b>；壞消息：當「研究創新」會被懂行評審看破。</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3 style="color:var(--leaf)">✓ 真正屬於我們的貢獻</h3>
+        <ul class="clean">
+          <li>把預測<b>升級成 MRV 決策尺</b>：碳量＋<b>不確定度分流（臨界送驗）</b>，模型知道何時該謙虛。</li>
+          <li>用<b>模式生物（萵苣）</b>把一套<b>非破壞、低成本</b>的量碳方法調準，<b>可遷移到森林/土壤/復育</b>等真實碳庫。</li>
+          <li>補市場<b>明確缺的查驗(MRV)機制</b>——連台泥微藻都因「沒方法學」拿不到碳權，量測缺口是真痛點。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout warn">
+      <p><strong>給組員的一句話：</strong>簡報別說「我們發明了用影像預測碳」——會被打。要說「<b>我們把已驗證的技術，做成第一把為固碳專案設計、會自報信心度、非破壞的低成本量碳尺，用模式生物驗證、可裝到森林/土壤/復育上</b>」。新穎性在<b>整合、落地、生態位</b>，不在底層回歸。</p>
+    </div>
   </div>
 </section>
 
 <!-- 方案分工 -->
 <section class="block" id="plan">
   <div class="wrap">
-    <span class="sec-kicker">技術方案 · 分工</span>
-    <h2>我們的方案：一個閉環，兩個人各有戲</h2>
+    <span class="sec-kicker">技術方案 · 可行性優先</span>
+    <h2>方案：一把尺，先在模式生物上調準（全程不燒）</h2>
 
     <div class="band">
-      <h3>核心技術閉環</h3>
+      <h3>核心技術流程（純量測、無燃燒）</h3>
       <div class="loop">
-        <div class="step"><div class="n">STEP 1 · 材料</div><h4>製炭</h4><p>蔬果/農業剩餘資材，控溫熱解（如 350/450/550°C）成生物炭。</p></div>
-        <div class="step"><div class="n">STEP 2 · 材料</div><h4>測標準答案</h4><p>元素分析測 H:C、碳含量；TGA 測固定碳，當 AI 的 ground truth。</p></div>
-        <div class="step"><div class="n">STEP 3 · 資工</div><h4>訓練 AI</h4><p>公開資料集＋自製樣品，模型從影像/光譜＋製程參數預測 H:C、CO₂e。</p></div>
-        <div class="step"><div class="n">STEP 4 · 資工</div><h4>驗證輸出</h4><p>報 R²/RMSE，封裝成「拍照→碳封存品質報告」的 demo。</p></div>
+        <div class="step"><div class="n">STEP 1 · 共同</div><h4>取得樣品</h4><p>萵苣<b>分批採收</b>做出生物量梯度（模式生物）；報名前先用<b>公開作物光譜資料集</b>跑概念驗證。</p></div>
+        <div class="step"><div class="n">STEP 2 · 資工</div><h4>便宜光學量測</h4><p>固定光箱拍照＋（選配）<b>手持 NIR</b>，萃取反射率/紋理/光譜特徵。<b>別只押 naive RGB 色相。</b></p></div>
+        <div class="step"><div class="n">STEP 3 · 材料</div><h4>標準答案校正</h4><p>對<b>少量</b>樣品乾燥＋<b>CHN 元素分析</b>測碳含量當真值（非破壞量測的校正錨點）。<b>不燃燒、不熱解。</b></p></div>
+        <div class="step"><div class="n">STEP 4 · 資工</div><h4>決策輸出</h4><p>模型：光學特徵→碳量；報 R²/RMSE，輸出碳量＋<b>信心度/送驗旗標</b>，封裝成「拍照→碳量測報告」demo。</p></div>
       </div>
     </div>
 
     <div class="two">
       <div class="panel mat">
-        <h3><span class="badge">材料系隊員</span>把廢料變成可信的碳</h3>
+        <h3><span class="badge">材料系隊員</span>提供量測可信度（計量與校正）</h3>
         <ul class="clean">
-          <li>把在地蔬果剩餘資材熱解成生物炭樣品（呼應原本的萵苣切角）。</li>
-          <li>用元素分析儀測碳含量與 <b>H:C 莫耳比</b>（決定碳權永久性的關鍵指標）。</li>
-          <li>（選配）TGA 固定碳、SEM 多孔結構、XRD/Raman 碳穩定性。</li>
+          <li>樣品製備：萵苣乾燥/秤重，標準化處理。</li>
+          <li><b>CHN 元素分析</b>測碳含量＝模型校正錨點（碳量測的 ground truth）。</li>
+          <li><b>光學/反射率量測裝置</b>的計量與一致性（固定打光、色卡、標準品）——這就是讓「拍照」可信的硬功夫。</li>
         </ul>
       </div>
       <div class="panel cs">
-        <h3><span class="badge">資工系隊員</span>把昂貴檢測變成一張照片</h3>
+        <h3><span class="badge">資工系隊員</span>把昂貴破壞性檢測變便宜拍照</h3>
         <ul class="clean">
-          <li>用公開生物炭資料庫（數百筆）訓練模型（XGBoost / CNN）。</li>
-          <li>輸入＝原料種類＋熱解溫度＋RGB/NIR 影像；輸出＝H:C、碳含量、封存 CO₂e。</li>
-          <li>以少量自製樣品做本地校正與獨立驗證，報出 R²／RMSE。</li>
+          <li>影像分割/特徵（G 通道綠面積雛形已有）＋光譜回歸（XGBoost / RF / CNN）。</li>
+          <li>輸入＝影像/反射率/NIR；輸出＝生物量碳含量。</li>
+          <li><b>不確定度分流</b>與本地校正，報 R²／RMSE，封裝成可展示的網頁 demo。</li>
         </ul>
       </div>
+    </div>
+
+    <div class="callout">
+      <p><strong>全程無燃燒：</strong>從萵苣樣品到 CHN 校正都是「乾燥＋拍照＋元素分析」，<b>沒有任何熱解、燃燒或生物炭製程</b>。材料系的角色是「<b>讓量測可信的計量/分析</b>」，不是製程。</p>
     </div>
   </div>
 </section>
 
-<!-- 設備清單 -->
+<!-- 設備與可行性 -->
 <section class="block" id="gear">
   <div class="wrap">
-    <span class="sec-kicker">設備清單 · 給材料組員</span>
-    <h2>需要哪些設備？借什麼最划算</h2>
-    <p class="lead">生物炭碳權的科學核心就一個數字——<b>H:C 莫耳比</b>（越低＝鎖得越牢、越值錢）。所以借用火力要集中。</p>
+    <span class="sec-kicker">設備清單 · 可行性優先</span>
+    <h2>需要哪些設備？怎麼最省力</h2>
+    <p class="lead">好消息：「便宜量測」端門檻極低，貴儀器（CHN）<b>只需對少量樣品用一次</b>當校正錨點。完全不需要爐子。</p>
     <table class="tbl">
-      <thead><tr><th>優先級</th><th>設備 / 檢測</th><th>解鎖什麼</th></tr></thead>
+      <thead><tr><th>優先級</th><th>設備 / 來源</th><th>解鎖什麼</th></tr></thead>
       <tbody>
-        <tr><td><span class="pri p1">必爭</span></td><td><b>元素分析儀 CHN/CHNS</b></td><td>測 H、C → 算 H:C＝AI 模型的標準答案，也是碳權永久性的法定指標。<b>缺它整個主張變空談。</b></td></tr>
-        <tr><td><span class="pri p1">必爭</span></td><td><b>熱解爐 / 管狀爐</b>（或可控氣氛馬弗爐）</td><td>做出「我們自己的」生物炭樣品＋拿到製程數據。缺它就失去「真的做出來並驗證」的可信度。</td></tr>
-        <tr><td><span class="pri p2">強加分</span></td><td><b>TGA 熱重分析</b></td><td>測固定碳/穩定碳比例，是 H:C 之外第二強的固碳指標。</td></tr>
-        <tr><td><span class="pri p2">新穎性引擎</span></td><td><b>便宜光譜 NIR / 手持光譜</b>（沒有就用 RGB 相機＋固定打光）</td><td>「便宜輸入」端——讓「用幾秒影像取代幾小時檢測」更有說服力。</td></tr>
-        <tr><td><span class="pri p3">次要</span></td><td>SEM / XRD / Raman / BET</td><td>海報視覺與碳穩定性的補充佐證，可省。</td></tr>
+        <tr><td><span class="pri p1">最易取得</span></td><td><b>萵苣（自種/市售，分批採收）</b></td><td>模式生物樣品＋生物量梯度，零等待先把流程跑通。</td></tr>
+        <tr><td><span class="pri p1">便宜好做</span></td><td><b>手機 ＋ 固定光箱 ＋ 色卡 ＋ 電子秤/烘箱</b></td><td>「便宜輸入」端（影像/反射率）＋乾重；固定打光才可重現。</td></tr>
+        <tr><td><span class="pri p1">關鍵校正</span></td><td><b>元素分析儀 CHN</b>（送驗少量）</td><td>測碳含量＝<b>整套尺的標準答案</b>，模型校正必需，但只需少量、非逐批。</td></tr>
+        <tr><td><span class="pri p2">加分</span></td><td><b>手持 NIR</b></td><td>光譜輸入比 RGB 強得多，主打「反射率/NIR 定量」的關鍵；借得到大加分。</td></tr>
+        <tr><td><span class="pri p3">零硬體可先做</span></td><td><b>公開作物光譜/生物量資料集</b></td><td>報名前先跑出概念驗證 R²，不必等任何設備。</td></tr>
       </tbody>
     </table>
 
     <h3 style="margin-top:2.2rem;font-size:1.2rem">給組員：本週首要確認清單</h3>
     <ul class="check">
-      <li class="t1"><span class="box"></span><div><b>能否借到 CHN/CHNS 元素分析儀？</b><span class="pri p1">第一順位</span><br><span class="muted">能借到就能成案。可問本系/相鄰系所材料或化學實驗室、貴重儀器中心。甚至可送樣付費代測幾個樣。</span></div></li>
-      <li class="t1"><span class="box"></span><div><b>能否借到熱解爐 / 管狀爐 / 馬弗爐？</b><span class="pri p1">第一順位</span><br><span class="muted">做 5～15 個樣品即可，半天一爐。或請有設備的實驗室代烤一爐。</span></div></li>
-      <li><span class="box"></span><div><b>能否借到 TGA？</b><span class="pri p2">加分</span><br><span class="muted">有的話固碳數字更硬。</span></div></li>
-      <li><span class="box"></span><div><b>有沒有便宜 NIR / 手持光譜，或固定打光的相機環境？</b><span class="pri p2">加分</span><br><span class="muted">這是新穎性的輸入端，值得額外爭取。</span></div></li>
-      <li><span class="box"></span><div><b>能否弄到現成生物炭樣品？</b><span class="pri p3">備援</span><br><span class="muted">台灣已有生物炭業者/農場，可「要」一點來測，省下自己烤的步驟。</span></div></li>
+      <li class="t1"><span class="box"></span><div><b>找一個公開「作物光譜↔生物量/碳」資料集，跑概念驗證 R²</b><span class="pri p1">第一順位</span><br><span class="muted">零硬體、這週可做，報名當天就有硬數字頂著。</span></div></li>
+      <li class="t1"><span class="box"></span><div><b>安排一批萵苣（自種或市售）分批採收</b><span class="pri p1">第一順位</span><br><span class="muted">做出生物量/碳含量梯度，當自有數據來源。</span></div></li>
+      <li><span class="box"></span><div><b>能否借到 CHN 元素分析（測少量碳含量）？</b><span class="pri p1">最關鍵</span><br><span class="muted">這是整把尺的 ground truth；只需少量、非逐批。</span></div></li>
+      <li><span class="box"></span><div><b>能否借到手持 NIR？</b><span class="pri p2">大加分</span><br><span class="muted">把輸入從 RGB 升級成光譜定量，準度與新穎性都跳級。</span></div></li>
+      <li><span class="box"></span><div><b>找碳權方法學/土壤/農藝顧問掛名</b><span class="pri p3">補團隊缺口</span><br><span class="muted">補評審第 4 點，避免被問倒（前車之鑑 TWN02）。</span></div></li>
     </ul>
 
     <div class="callout">
-      <p><strong>一句話給組員：</strong>能借到「<b>CHN 元素分析儀 ＋ 一台能炭化的爐子</b>」就能成案；再借到 <b>TGA</b> 就很穩；其他都是加分。最值得額外爭取的是<b>便宜光譜/NIR</b>，那是我們新穎性的命脈。</p>
-    </div>
-  </div>
-</section>
-
-<!-- 沒設備也能做 -->
-<section class="block" id="nodata">
-  <div class="wrap">
-    <span class="sec-kicker">退路 · 風險拆解</span>
-    <h2>就算完全沒設備，也能用公開資料集做</h2>
-    <p class="lead">這個設計直接把「難收集大量數據」這個限制拆掉。</p>
-    <div class="two">
-      <div class="panel">
-        <h3 style="color:var(--leaf)">✓ 純資料集能做到</h3>
-        <ul class="clean">
-          <li>AI 模型可<b>完全用公開生物炭資料庫</b>訓練（國際有數百筆「原料×溫度→碳含量/H:C」資料，文獻 R² 可達 0.9–0.97）。</li>
-          <li>照樣能報出 <b>R²／RMSE</b>，做出「拍照→預測品質」的 demo 雛形。</li>
-          <li>提案交得出去、邏輯完整、科學站得住，名次預期中上。</li>
-        </ul>
-      </div>
-      <div class="panel">
-        <h3 style="color:#b23b3b">⚠ 純資料集會少掉的分數</h3>
-        <ul class="clean">
-          <li>少了「我們真的烤出來、也驗證過」的可信度（材料評審很看重）。</li>
-          <li>少了台灣在地原料的本地驗證樣品。</li>
-          <li>「拍照預測」的殺手 demo 說服力會打折。</li>
-        </ul>
-      </div>
-    </div>
-    <div class="callout green">
-      <p><strong>最低門檻比你想的低很多：</strong>不需要擁有整套實驗室。只要能<b>弄到幾塊生物炭樣品 ＋ 借「元素分析儀」用一次</b>把標準答案測出來，就能把純資料集版本升級成「有真數據、有本地驗證」的<b>衝獎版</b>。擠得出「幾個樣品＋一次檢測」→ 衝獎機率明顯拉高。</p>
+      <p><strong>一句話給組員：</strong>這版唯一的硬依賴是 <b>CHN（少量送驗校正）</b>，且<b>完全不需要任何爐子或燃燒</b>。報名前用公開資料的概念驗證 R² 成案，入圍後用自種萵苣＋CHN 換自有真值。把貴設備依賴降到「少量用一次」，正是「可行性優先」。</p>
     </div>
   </div>
 </section>
@@ -411,37 +471,37 @@
   <div class="wrap">
     <span class="sec-kicker">完整中文企劃</span>
     <h2>對應官方摘要表六欄（英文可直接落地）</h2>
-    <p class="lead">標 <span class="tagq">需實測</span> 的數字＝借到設備後用真值替換；其餘為可引用的錨點。</p>
+    <p class="lead"><span class="tagok">已有/可即做</span>＝現有或零硬體可完成；<span class="tagq">需實測</span>＝借到設備後用真值替換。</p>
     <div class="six">
       <div class="item">
         <span class="en">① Introduction of Team</span>
         <h3>團隊介紹</h3>
-        <p>跨域組合是<b>賣點不是缺口</b>：Materials（熱解製程＋固碳機制＋元素/結構表徵）× Computer Science（影像/光譜 ML、低成本驗證系統）。一句話定位：<i>"A materials–AI team building the cheapest credible way to prove a ton of carbon is permanently locked in biochar."</i> 借到設備則註明合作實驗室；可列在地蔬果產區/農會為場域夥伴。</p>
+        <p>跨域組合是<b>賣點不是缺口</b>：Materials（元素分析＋光學量測計量＝量測可信度）× Computer Science（影像/光譜 ML、低成本量測系統）。一句話定位：<i>"A materials–AI team building the cheapest, non-destructive ruler to measure how much carbon a plant holds."</i> 明列碳權方法學/土壤/農藝合作顧問補齊專業（呼應評審第 4 點）。</p>
       </div>
       <div class="item">
         <span class="en">② Creation Motive — Problem-solving & technical value</span>
         <h3>創作動機：解決問題與技術價值</h3>
-        <p><b>市場痛點：</b>台灣生物炭碳權需求爆發（2025 年 62% 產能被企業預購），但無主管機關、無查驗(MRV)機制 → 信任與規模化卡關。<b>技術痛點：</b>傳統 MRV 要對每批生物炭做元素分析（耗時昂貴），分散小農做不起。<b>技術價值：</b>用 AI 從便宜影像/光譜預測決定碳權價值的永久性指標（H:Corg、固定碳、CO₂e），把單批驗證從「小時級實驗室」壓到「秒級現場」。</p>
+        <p><b>市場痛點：</b>生物碳移除（造林、土壤、復育、微藻）的共同瓶頸是<b>查驗(MRV)太貴太慢</b>，現況靠破壞性採樣＋昂貴元素分析逐批做；連台泥微藻都因「沒方法學/驗不了」拿不到碳權。<b>技術價值：</b>用 AI 從便宜影像/NIR <b>非破壞性</b>預測碳含量，把碳量測從「破壞性、小時級、貴」壓到「拍照、秒級、便宜」，不確定才送驗——做全市場都缺的那把尺。</p>
       </div>
       <div class="item">
         <span class="en">③ Research Process</span>
         <h3>研究過程</h3>
-        <p>1. 蒐集在地蔬果剩餘資材 → 控溫熱解製炭。 2. 表徵建標籤：CHN 測 H:C 與 C% <span class="tagq">需實測</span>、TGA 測固定碳 <span class="tagq">需實測</span>。 3. 建資料集＝公開資料庫＋自製樣品。 4. 訓練模型（XGBoost / CNN）：輸入原料種類＋溫度＋影像，輸出 H:C、C%、CO₂e。 5. 驗證報 R²/RMSE <span class="tagq">需實測</span>。 6. 封裝成 MRV 工具（手機/網頁 demo）。</p>
+        <p>1. 概念驗證：公開作物光譜↔生物量/碳資料集跑回歸 <span class="tagok">可即做</span>。 2. 取樣：萵苣分批採收（模式生物）。 3. 便宜光學量測（影像＋反射率/NIR）。 4. 少量 CHN 元素分析測碳含量當真值 <span class="tagq">需實測</span>。 5. 訓練模型＋驗證報 R²/RMSE＋不確定度分流。 6. 封裝成「拍照→碳量測報告」MRV 工具 demo。</p>
       </div>
       <div class="item">
         <span class="en">④ Brief of Work — Creativity / Technical content & feasibility</span>
         <h3>作品簡介：創意 / 技術內涵與可行性</h3>
-        <p><b>核心閉環：</b>Waste → Pyrolysis → AI-verified permanence → Tradable credit。<b>創意：</b>首創把 ML 當作生物炭碳封存的低成本驗證代理，綁定國際 H:C 永久性判準，補台灣查驗缺口。<b>可行性：</b>① 生物炭 ML 已是高 R² 成熟領域；② 公開資料集現成；③ 本地樣品需求量小；④ 科學主張免疫「採收釋回」質疑（生物炭固碳 200+ 年，全球碳移除額度 34% 來自生物炭）。</p>
+        <p><b>核心：</b>Cheap optics + AI → calibrated, non-destructive carbon measurement (MRV)，用萵苣模式生物調準、可遷移到森林/土壤/復育。<b>創意：</b>首創把 ML 做成<b>會自報信心、非破壞</b>的低成本量碳尺，補市場缺的查驗機制。<b>可行性：</b>① 技術已被文獻驗證；② 公開作物資料現成可先跑概念驗證；③ 萵苣樣品快又便宜；④ <b>不主張固碳/碳權、不燃燒</b>，徹底避開永久性紅線。</p>
       </div>
       <div class="item">
         <span class="en">⑤ Expected Benefit — 具體量化</span>
-        <h3>預期效益（量化，數字先佔位）</h3>
-        <p><b>MRV 降本/提速：</b>單批驗證 小時級→秒級；對標國際 dMRV 降本 40–90% <span class="tagq">需實測回填</span>。<b>固碳效益：</b>每噸生物炭約封存 2.5–3 噸 CO₂e <span class="tagq">需實測</span>；永久性 H:C&lt;0.7。<b>AI 性能：</b>H:C 預測 R² ＝ <span class="tagq">需實測</span>、C% RMSE ＝ <span class="tagq">需實測</span>。<b>市場：</b>台灣生物炭碳權供不應求（62% 預售）；接軌農業 2040 增匯 1,000 萬噸、碳費 300 元/噸的買方誘因。<b>社會：</b>農業廢棄物加值、農民新收入、減少露天燒除空污。</p>
+        <h3>預期效益（量化）</h3>
+        <p><b>MRV 降本/提速：</b>碳量測 破壞性小時級→非破壞秒級；只少數臨界批次需送驗。<b>AI 性能：</b>萵苣端「影像→生物量碳」R²/RMSE <span class="tagq">需實測</span>；報名前先有公開資料概念驗證 R² <span class="tagok">可即做</span>。<b>市場/影響（雙贏）：</b>讓造林/土壤碳專案、農戶<b>第一次驗得起碳、進得了碳權市場</b>＝省錢＋新收入；服務 TWN15 這類所有固碳專案。</p>
       </div>
       <div class="item">
         <span class="en">⑥ Project Introduction Video（≤5 min, MPEG-4 雲端連結）</span>
         <h3>提案影片分鏡</h3>
-        <p>① 痛點：碳權很熱，但沒人能便宜驗證真假（30s）→ ② 閉環動畫（40s）→ ③ 實驗室實拍：原料進爐、生物炭、元素分析儀讀數（60s）→ ④ AI demo：手機拍一張生物炭照片，跳出 H:C/CO₂e 報告（60s）→ ⑤ 數據成績(R²)＋市場規模＋呼籲（60s）。</p>
+        <p>① 痛點：碳移除很熱，但「量碳」又貴又慢，連台泥都驗不了（30s）→ ② 轉念：我們不種碳、不儲碳，做量碳的尺（30s）→ ③ 實拍：萵苣分批採收、控光拍照、CHN 讀數（60s）→ ④ AI demo：拍照進，跳出碳量＋信心度報告（60s）→ ⑤ 成績(R²)＋成本對比＋市場＋呼籲（60s）。</p>
       </div>
     </div>
   </div>
@@ -453,24 +513,24 @@
     <span class="sec-kicker">下一步</span>
     <h2>接下來怎麼推進</h2>
     <ol class="next">
-      <li>組員本週確認 Tier 1 設備（元素分析儀＋炭化爐）能否借到——決定走「完整版」或「概念驗證版」。</li>
-      <li>定稿英文摘要表（1–2 頁 A4，Arial 12）——這是初審評分骨架，最該先定。</li>
-      <li>資工端：選定公開資料集、特徵、模型，跑出第一版 R²/RMSE。</li>
-      <li>材料端：拿著「實驗計畫一頁書」去借設備、做 5–15 個樣品。</li>
-      <li>拍 ≤5 分鐘英文介紹影片。</li>
+      <li><b>6/25 前（零硬體可完成）：</b>跑公開作物資料概念驗證 R²＋定稿英文摘要表（1–2 頁 A4, Arial 12）＋拍 5 分鐘影片。</li>
+      <li>組員本週：找公開資料集、安排萵苣分批採收、確認能否借 CHN（最關鍵）、洽碳權/土壤/農藝顧問掛名。</li>
+      <li>資工端：把「拍照→碳量測報告」MRV 決策工具整理成可展示的網頁 demo 雛形（接上既有 G 通道 pipeline）。</li>
+      <li><b>入圍後（7/10 公告，才碰較貴設備）：</b>自種萵苣＋少量 CHN 校正、（加分）借手持 NIR，做萵苣端「影像→生物量碳」自有真實驗證。</li>
+      <li>決賽前：完成「拍照→碳量測報告」殺手 demo 與海報硬數字（R²/RMSE＋成本/速度對比）。</li>
     </ol>
-    <p class="muted" style="margin-top:1.5rem">關鍵時程：報名截止 6/25 · 初審複審 6/29–7/8 · 入圍公告 7/10 · 決賽暨頒獎 8/19。所有文件限英語。</p>
+    <p class="muted" style="margin-top:1.5rem">關鍵時程：報名截止 6/25 · 初審複審 6/29–7/8 · 入圍公告 7/10 · 決賽暨頒獎 8/19。所有文件限英語。萵苣影像雛形見 <code>03_實驗數據/植物影像分析_G通道.md</code>。<b>本版不含任何生物炭/燃燒/熱解。</b></p>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <p><b>CharScan</b> · 2026 Net Zero Tech 淨零排放科技國際競賽提案方向總覽</p>
+    <p><b>CarbonLens</b> · 2026 Net Zero Tech 淨零排放科技國際競賽提案方向總覽（純萵苣量碳尺版 · 無生物炭/無燃燒）</p>
     <p class="src">主要依據：
-      <a href="https://puro.earth/methodologies/biochar/">Puro.earth 生物炭方法學（H:C 永久性、200+ 年、佔 CORC 34%）</a> ·
-      <a href="https://www.sciencedirect.com/science/article/abs/pii/S0960852423012488">ML 預測生物炭碳含量</a> ·
-      <a href="https://esg.gvm.com.tw/article/32106">生物炭碳權搶購潮（62% 預售）</a> ·
-      <a href="https://csrone.com/topics/8596">台灣本土減碳方法學缺口</a>
+      <a href="https://esg.gvm.com.tw/article/26818">綠學院：養藻無方法學、拿不到碳權（量測缺口是真痛點）</a> ·
+      <a href="https://www.sciencedirect.com/topics/engineering/biogenic-carbon">年生作物淨庫存變化≈0、biogenic 碳三條件</a> ·
+      葉片光譜/NDVI/SPAD → 生物量/氮、NIR → 有機碳 之既有文獻 ·
+      萵苣影像雛形見 <code>03_實驗數據/植物影像分析_G通道.md</code>
     </p>
   </div>
 </footer>
