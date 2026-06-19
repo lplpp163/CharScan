@@ -188,9 +188,9 @@
     <h1>Carbon<span class="scan">Lens</span></h1>
     <p class="slogan">我們不種碳、不儲碳、不賣碳權——我們做「量碳的尺」：用一張照片，便宜又非破壞地量出植物固了多少碳。</p>
     <div class="flow">
-      <span class="pill">便宜影像 / 手持 NIR</span><span class="arrow">→</span>
-      <span class="pill">AI 預測碳量</span><span class="arrow">→</span>
-      <span class="pill">少量元素分析(CHN)校正(真值)</span><span class="arrow">→</span>
+      <span class="pill">便宜影像＋環境時序（溫度/光照）</span><span class="arrow">→</span>
+      <span class="pill">AI 估生物量 → 每株總碳量</span><span class="arrow">→</span>
+      <span class="pill">少量 CHN＋乾重校正(真值)</span><span class="arrow">→</span>
       <span class="pill">低成本碳量測 (MRV)</span>
     </div>
     <div class="flow second">
@@ -208,7 +208,7 @@
       <div class="card solution">
         <span class="tag">方案</span>
         <h3>AI 光學「量碳尺」</h3>
-        <p>資工端用便宜影像/NIR 訓練 AI 非破壞預測碳含量；材料端用元素分析(CHN)對少量樣品提供「標準答案」校正。輸出帶<b>信心區間</b>，不確定的才送驗。<b>不燒、不破壞。</b></p>
+        <p>資工端用便宜影像/NIR＋環境時序訓練 AI 非破壞預測<b>每株總碳量</b>；材料端用元素分析(CHN)＋乾重對少量樣品提供「標準答案」校正。輸出帶<b>信心區間</b>，不確定的才送驗。<b>不燒、不破壞。</b></p>
       </div>
       <div class="card win">
         <span class="tag">為什麼能贏</span>
@@ -262,11 +262,11 @@
     <table class="tbl">
       <thead><tr><th>評審必問</th><th>CarbonLens 的答案</th></tr></thead>
       <tbody>
-        <tr><td><b>① 硬數據＋國際比較</b><br>「你準度多少？比現況好嗎？」</td><td>報<b>影像/NIR → 碳含量的 R²／RMSE</b>（CHN 當真值）；對標傳統元素分析（破壞性、小時級、數十美金/件）→ 非破壞、秒級、近乎零邊際成本。先用<b>公開作物光譜資料</b>跑概念驗證 R²，再用自種萵苣＋CHN 做自有數據。</td></tr>
-        <tr><td><b>② 真實、做得出、撐得住</b><br>不是概念或模擬</td><td>萵苣分批採收做出<b>生物量/碳含量梯度</b>＝真樣品、真量測；模型 pipeline（含不確定度分流）已建好，非模擬。</td></tr>
+        <tr><td><b>① 硬數據＋國際比較</b><br>「你準度多少？比現況好嗎？」</td><td>報<b>影像/NIR → 每株總碳量的 R²／RMSE</b>（CHN＋乾重當真值）；對標傳統元素分析（破壞性、小時級、數十美金/件）→ 非破壞、秒級、近乎零邊際成本。先用<b>公開作物光譜資料</b>跑概念驗證 R²，再用自種萵苣＋CHN 做自有數據。</td></tr>
+        <tr><td><b>② 真實、做得出、撐得住</b><br>不是概念或模擬</td><td>萵苣分批採收做出<b>生物量/總碳梯度</b>＝真樣品、真量測；模型 pipeline（含不確定度分流）已建好，非模擬。</td></tr>
         <tr><td><b>③ 成本與商業化</b><br>「成本多低？怎麼規模化？」</td><td>把碳量測從「破壞性採樣＋貴儀器逐件」壓到「拍照＋少量送驗校正」；服務對象＝缺便宜 MRV 的<b>造林/土壤碳專案、農戶、復育案、碳權開發商</b>。</td></tr>
         <tr><td><b>④ 團隊專業完整</b><br>缺領域專家會被當場打（前車之鑑 TWN02：只有營養師被質疑憑色彩判療效）</td><td>材料（元素/光學表徵＝量測可信度與計量）＋資工（ML/系統）雙覆蓋；<b>碳權方法學/土壤/農藝</b>明列合作顧問補缺口。</td></tr>
-        <tr><td><b>⑤ AI 智慧到底在哪</b><br>不能只說「我們用了 AI」</td><td>講清楚<b>輸入→輸出→訓練→指標</b>：輸入便宜光學量測，輸出碳含量＋<b>信心區間</b>；報 R²/RMSE；模型<b>知道自己何時不確定</b>，自動把臨界樣品轉送實驗室——這正是可信 MRV 該有的行為。</td></tr>
+        <tr><td><b>⑤ AI 智慧到底在哪</b><br>不能只說「我們用了 AI」</td><td>講清楚<b>輸入→輸出→訓練→指標</b>：輸入便宜光學量測＋環境時序，輸出<b>每株總碳量</b>＋<b>信心區間</b>；報 R²/RMSE；模型<b>知道自己何時不確定</b>，自動把臨界樣品轉送實驗室——這正是可信 MRV 該有的行為。</td></tr>
       </tbody>
     </table>
   </div>
@@ -331,13 +331,13 @@
         <h3 style="color:var(--ember)">◷ 6/25 前要補的硬數字</h3>
         <ul class="clean">
           <li><b>概念驗證 R²（這週可做、零硬體）</b>：拿公開「作物/葉片光譜 ↔ 生物量/碳」資料集，跑「光學特徵 → 碳/生物量」回歸，先報一個 R²/RMSE，證明方法會動。</li>
-          <li><b>自有數據（入圍後）</b>：自種萵苣分批採收 → 控光拍照＋NIR → 少量 CHN 測碳含量 → 報自有 R²/RMSE。</li>
+          <li><b>自有數據（進行中）</b>：已送萵苣樣品做 <b>CHN 元素分析（等結果）</b>；流程＝分批採收 → 控光拍照＋環境時序 → 同步量<b>鮮重/乾重</b>，乾重×CHN(%C)＝<b>每株總碳量</b>真值 → 報自有 R²/RMSE。</li>
         </ul>
       </div>
     </div>
 
     <div class="callout">
-      <p><strong>定位（給組員）：</strong>我們不像舊版用「生物炭公開資料」當成績——純萵苣版的硬數字來自<b>「作物光學特徵 → 生物量碳」</b>。報名當天先用<b>公開作物資料的概念驗證 R²</b>頂著，入圍後用<b>自種萵苣＋CHN</b>換成自有真值。整條路<b>完全不需要燃燒、熱解或任何生物炭</b>。</p>
+      <p><strong>定位（給組員）：</strong>我們不像舊版用「生物炭公開資料」當成績——純萵苣版的硬數字來自<b>「作物光學特徵＋環境時序 → 每株總碳量」</b>。報名當天先用<b>公開作物資料的概念驗證 R²</b>頂著，入圍後用<b>自種萵苣＋CHN</b>換成自有真值。整條路<b>完全不需要燃燒、熱解或任何生物炭</b>。</p>
     </div>
   </div>
 </section>
@@ -403,26 +403,30 @@
       <h3>核心技術流程（純量測、無燃燒）</h3>
       <div class="loop">
         <div class="step"><div class="n">STEP 1 · 共同</div><h4>取得樣品</h4><p>萵苣<b>分批採收</b>做出生物量梯度（模式生物）；報名前先用<b>公開作物光譜資料集</b>跑概念驗證。</p></div>
-        <div class="step"><div class="n">STEP 2 · 資工</div><h4>便宜光學量測</h4><p>固定光箱拍照＋（選配）<b>手持 NIR</b>，萃取反射率/紋理/光譜特徵。<b>別只押 naive RGB 色相。</b></p></div>
-        <div class="step"><div class="n">STEP 3 · 材料</div><h4>標準答案校正</h4><p>對<b>少量</b>樣品乾燥＋<b>CHN 元素分析</b>測碳含量當真值（非破壞量測的校正錨點）。<b>不燃燒、不熱解。</b></p></div>
-        <div class="step"><div class="n">STEP 4 · 資工</div><h4>決策輸出</h4><p>模型：光學特徵→碳量；報 R²/RMSE，輸出碳量＋<b>信心度/送驗旗標</b>，封裝成「拍照→碳量測報告」demo。</p></div>
+        <div class="step"><div class="n">STEP 2 · 資工</div><h4>便宜光學＋環境量測</h4><p>固定光箱拍照＋（選配）<b>手持 NIR</b>，萃取<b>冠層面積/綠度/紋理</b>；同步記錄<b>溫度、光照(DLI)時序</b>。<b>別只押 naive RGB 色相。</b></p></div>
+        <div class="step"><div class="n">STEP 3 · 材料</div><h4>標準答案校正</h4><p>對<b>少量</b>樣品乾燥<b>秤乾重＋CHN 測碳分率(%C)</b>，相乘＝<b>每株總碳量</b>真值（非破壞量測的校正錨點）。<b>不燃燒、不熱解。</b></p></div>
+        <div class="step"><div class="n">STEP 4 · 資工</div><h4>決策輸出</h4><p>模型：影像＋環境時序→<b>生物量→每株總碳量</b>；報 R²/RMSE，輸出碳量＋<b>信心度/送驗旗標</b>，封裝成「拍照→碳量測報告」demo。</p></div>
       </div>
+    </div>
+
+    <div class="callout ember">
+      <p><strong>為什麼量「每株總碳」而不是「碳濃度」：</strong>植物乾物質的<b>碳分率(%C)幾乎是常數（約 45%）</b>，跨環境變動極小——預測它沒有意義、也沒價值。真正會變、也真正值得量的是<b>每株總碳量 ＝ 乾生物量 × 碳分率</b>，變動幾乎全來自<b>生物量與乾物率（含水量）</b>。所以模型用<b>影像（冠層面積/綠度）＋環境時序（累積光照 DLI／積溫）</b>估生物量，再乘碳分率得總碳；<b>CHN(%C)＋乾重</b>提供總碳真值——這也是為什麼採收時必須<b>同時量鮮重與乾重</b>。</p>
     </div>
 
     <div class="two">
       <div class="panel mat">
         <h3><span class="badge">材料系隊員</span>提供量測可信度（計量與校正）</h3>
         <ul class="clean">
-          <li>樣品製備：萵苣乾燥/秤重，標準化處理。</li>
-          <li><b>CHN 元素分析</b>測碳含量＝模型校正錨點（碳量測的 ground truth）。</li>
+          <li>樣品製備：萵苣<b>秤鮮重/乾重</b>、乾燥磨樣，標準化處理。</li>
+          <li><b>CHN 測碳分率(%C)＋乾重</b>，相乘＝<b>每株總碳量</b>＝模型校正錨點（ground truth）。</li>
           <li><b>光學/反射率量測裝置</b>的計量與一致性（固定打光、色卡、標準品）——這就是讓「拍照」可信的硬功夫。</li>
         </ul>
       </div>
       <div class="panel cs">
         <h3><span class="badge">資工系隊員</span>把昂貴破壞性檢測變便宜拍照</h3>
         <ul class="clean">
-          <li>影像分割/特徵（G 通道綠面積雛形已有）＋光譜回歸（XGBoost / RF / CNN）。</li>
-          <li>輸入＝影像/反射率/NIR；輸出＝生物量碳含量。</li>
+          <li>影像分割/特徵（G 通道綠面積雛形已有）＋環境時序，光譜/迴歸模型（XGBoost / RF / CNN）。</li>
+          <li>輸入＝影像/反射率/NIR＋環境時序；輸出＝<b>每株總碳量</b>（生物量×碳分率）。</li>
           <li><b>不確定度分流</b>與本地校正，報 R²／RMSE，封裝成可展示的網頁 demo。</li>
         </ul>
       </div>
@@ -444,8 +448,8 @@
       <thead><tr><th>優先級</th><th>設備 / 來源</th><th>解鎖什麼</th></tr></thead>
       <tbody>
         <tr><td><span class="pri p1">最易取得</span></td><td><b>萵苣（自種/市售，分批採收）</b></td><td>模式生物樣品＋生物量梯度，零等待先把流程跑通。</td></tr>
-        <tr><td><span class="pri p1">便宜好做</span></td><td><b>手機 ＋ 固定光箱 ＋ 色卡 ＋ 電子秤/烘箱</b></td><td>「便宜輸入」端（影像/反射率）＋乾重；固定打光才可重現。</td></tr>
-        <tr><td><span class="pri p1">關鍵校正</span></td><td><b>元素分析儀 CHN</b>（送驗少量）</td><td>測碳含量＝<b>整套尺的標準答案</b>，模型校正必需，但只需少量、非逐批。</td></tr>
+        <tr><td><span class="pri p1">便宜好做</span></td><td><b>手機 ＋ 固定光箱 ＋ 色卡 ＋ 電子秤/烘箱 ＋ 溫濕度/光照記錄器</b></td><td>「便宜輸入」端（影像/反射率）＋鮮重/乾重＋環境時序；固定打光才可重現。</td></tr>
+        <tr><td><span class="pri p1">關鍵校正</span></td><td><b>元素分析儀 CHN</b>（送驗少量）</td><td>測碳分率(%C)，配乾重＝<b>整套尺的標準答案（每株總碳真值）</b>，模型校正必需，但只需少量、非逐批。</td></tr>
         <tr><td><span class="pri p2">加分</span></td><td><b>手持 NIR</b></td><td>光譜輸入比 RGB 強得多，主打「反射率/NIR 定量」的關鍵；借得到大加分。</td></tr>
         <tr><td><span class="pri p3">零硬體可先做</span></td><td><b>公開作物光譜/生物量資料集</b></td><td>報名前先跑出概念驗證 R²，不必等任何設備。</td></tr>
       </tbody>
@@ -454,8 +458,8 @@
     <h3 style="margin-top:2.2rem;font-size:1.2rem">給組員：本週首要確認清單</h3>
     <ul class="check">
       <li class="t1"><span class="box"></span><div><b>找一個公開「作物光譜↔生物量/碳」資料集，跑概念驗證 R²</b><span class="pri p1">第一順位</span><br><span class="muted">零硬體、這週可做，報名當天就有硬數字頂著。</span></div></li>
-      <li class="t1"><span class="box"></span><div><b>安排一批萵苣（自種或市售）分批採收</b><span class="pri p1">第一順位</span><br><span class="muted">做出生物量/碳含量梯度，當自有數據來源。</span></div></li>
-      <li><span class="box"></span><div><b>能否借到 CHN 元素分析（測少量碳含量）？</b><span class="pri p1">最關鍵</span><br><span class="muted">這是整把尺的 ground truth；只需少量、非逐批。</span></div></li>
+      <li class="t1"><span class="box"></span><div><b>安排一批萵苣（自種或市售）分批採收</b><span class="pri p1">第一順位</span><br><span class="muted">做出生物量/總碳梯度，當自有數據來源。</span></div></li>
+      <li><span class="box"></span><div><b>能否借到 CHN 元素分析（測少量樣品碳分率%C）？</b><span class="pri p1">最關鍵</span><br><span class="muted">這是整把尺的 ground truth；只需少量、非逐批。</span></div></li>
       <li><span class="box"></span><div><b>能否借到手持 NIR？</b><span class="pri p2">大加分</span><br><span class="muted">把輸入從 RGB 升級成光譜定量，準度與新穎性都跳級。</span></div></li>
       <li><span class="box"></span><div><b>找碳權方法學/土壤/農藝顧問掛名</b><span class="pri p3">補團隊缺口</span><br><span class="muted">補評審第 4 點，避免被問倒（前車之鑑 TWN02）。</span></div></li>
     </ul>
@@ -481,12 +485,12 @@
       <div class="item">
         <span class="en">② Creation Motive — Problem-solving & technical value</span>
         <h3>創作動機：解決問題與技術價值</h3>
-        <p><b>市場痛點：</b>生物碳移除（造林、土壤、復育、微藻）的共同瓶頸是<b>查驗(MRV)太貴太慢</b>，現況靠破壞性採樣＋昂貴元素分析逐批做；連台泥微藻都因「沒方法學/驗不了」拿不到碳權。<b>技術價值：</b>用 AI 從便宜影像/NIR <b>非破壞性</b>預測碳含量，把碳量測從「破壞性、小時級、貴」壓到「拍照、秒級、便宜」，不確定才送驗——做全市場都缺的那把尺。</p>
+        <p><b>市場痛點：</b>生物碳移除（造林、土壤、復育、微藻）的共同瓶頸是<b>查驗(MRV)太貴太慢</b>，現況靠破壞性採樣＋昂貴元素分析逐批做；連台泥微藻都因「沒方法學/驗不了」拿不到碳權。<b>技術價值：</b>用 AI 從便宜影像/NIR＋環境時序 <b>非破壞性</b>預測<b>每株總碳量</b>，把碳量測從「破壞性、小時級、貴」壓到「拍照、秒級、便宜」，不確定才送驗——做全市場都缺的那把尺。</p>
       </div>
       <div class="item">
         <span class="en">③ Research Process</span>
         <h3>研究過程</h3>
-        <p>1. 概念驗證：公開作物光譜↔生物量/碳資料集跑回歸 <span class="tagok">可即做</span>。 2. 取樣：萵苣分批採收（模式生物）。 3. 便宜光學量測（影像＋反射率/NIR）。 4. 少量 CHN 元素分析測碳含量當真值 <span class="tagq">需實測</span>。 5. 訓練模型＋驗證報 R²/RMSE＋不確定度分流。 6. 封裝成「拍照→碳量測報告」MRV 工具 demo。</p>
+        <p>1. 概念驗證：公開作物光譜↔生物量/碳資料集跑回歸 <span class="tagok">可即做</span>。 2. 取樣：萵苣分批採收（模式生物）。 3. 便宜光學量測（影像＋反射率/NIR）。 4. 少量 CHN 測碳分率(%C)＋乾重 → 每株總碳量當真值 <span class="tagq">需實測</span>。 5. 訓練模型＋驗證報 R²/RMSE＋不確定度分流。 6. 封裝成「拍照→碳量測報告」MRV 工具 demo。</p>
       </div>
       <div class="item">
         <span class="en">④ Brief of Work — Creativity / Technical content & feasibility</span>
@@ -496,7 +500,7 @@
       <div class="item">
         <span class="en">⑤ Expected Benefit — 具體量化</span>
         <h3>預期效益（量化）</h3>
-        <p><b>MRV 降本/提速：</b>碳量測 破壞性小時級→非破壞秒級；只少數臨界批次需送驗。<b>AI 性能：</b>萵苣端「影像→生物量碳」R²/RMSE <span class="tagq">需實測</span>；報名前先有公開資料概念驗證 R² <span class="tagok">可即做</span>。<b>市場/影響（雙贏）：</b>讓造林/土壤碳專案、農戶<b>第一次驗得起碳、進得了碳權市場</b>＝省錢＋新收入；服務 TWN15 這類所有固碳專案。</p>
+        <p><b>MRV 降本/提速：</b>碳量測 破壞性小時級→非破壞秒級；只少數臨界批次需送驗。<b>AI 性能：</b>萵苣端「影像＋環境→每株總碳量」R²/RMSE <span class="tagq">需實測</span>；報名前先有公開資料概念驗證 R² <span class="tagok">可即做</span>。<b>市場/影響（雙贏）：</b>讓造林/土壤碳專案、農戶<b>第一次驗得起碳、進得了碳權市場</b>＝省錢＋新收入；服務 TWN15 這類所有固碳專案。</p>
       </div>
       <div class="item">
         <span class="en">⑥ Project Introduction Video（≤5 min, MPEG-4 雲端連結）</span>
@@ -516,7 +520,7 @@
       <li><b>6/25 前（零硬體可完成）：</b>跑公開作物資料概念驗證 R²＋定稿英文摘要表（1–2 頁 A4, Arial 12）＋拍 5 分鐘影片。</li>
       <li>組員本週：找公開資料集、安排萵苣分批採收、確認能否借 CHN（最關鍵）、洽碳權/土壤/農藝顧問掛名。</li>
       <li>資工端：把「拍照→碳量測報告」MRV 決策工具整理成可展示的網頁 demo 雛形（接上既有 G 通道 pipeline）。</li>
-      <li><b>入圍後（7/10 公告，才碰較貴設備）：</b>自種萵苣＋少量 CHN 校正、（加分）借手持 NIR，做萵苣端「影像→生物量碳」自有真實驗證。</li>
+      <li><b>入圍後（7/10 公告，才碰較貴設備）：</b>自種萵苣＋少量 CHN 校正、（加分）借手持 NIR，做萵苣端「影像＋環境→每株總碳量」自有真實驗證。</li>
       <li>決賽前：完成「拍照→碳量測報告」殺手 demo 與海報硬數字（R²/RMSE＋成本/速度對比）。</li>
     </ol>
     <p class="muted" style="margin-top:1.5rem">關鍵時程：報名截止 6/25 · 初審複審 6/29–7/8 · 入圍公告 7/10 · 決賽暨頒獎 8/19。所有文件限英語。萵苣影像雛形見 <code>03_實驗數據/植物影像分析_G通道.md</code>。<b>本版不含任何生物炭/燃燒/熱解。</b></p>
