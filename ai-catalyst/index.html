@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI 催化劑三方向比較｜組員討論</title>
+<meta name="description" content="三個高勝率方向比較：CarbonForge(AI設計銅催化劑把廢氣CO₂變化學品)、SeaH2(AI抗腐蝕催化劑海水產氫)、ReClaim(AI優化電化學稀土回收)。同一範式：AI當設計大腦→合成非貴金屬催化劑→實測→應用。2026 Net Zero Tech 競賽選題討論。" />
+<style>
+  :root{
+    --bg:#f7f5f1; --surface:#ffffff; --ink:#1b1714; --muted:#6b6258; --char:#221e1a;
+    --a:#c2701c; --a-soft:#f6e6d2;     /* CarbonForge copper/amber */
+    --b:#1f6f8b; --b-soft:#d8eaf0;     /* SeaH2 teal */
+    --c:#3f7d52; --c-soft:#e1efe5;     /* ReClaim green */
+    --line:#e6e0d6;
+    --shadow:0 1px 2px rgba(28,24,20,.04),0 8px 28px rgba(28,24,20,.06);
+    --shadow-lg:0 2px 6px rgba(28,24,20,.05),0 20px 50px rgba(28,24,20,.10);
+    --r:16px; --maxw:1120px; --space:clamp(3rem,2.2rem+3.5vw,6rem); font-synthesis:none;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:72px}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+    line-height:1.72;font-size:17px;-webkit-font-smoothing:antialiased;letter-spacing:.01em}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  h1,h2,h3{line-height:1.18;letter-spacing:-.02em;font-weight:800;margin:0}
+  a{color:var(--a);text-decoration:none} a:hover{text-decoration:underline}
+
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(247,245,241,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:var(--maxw);margin:0 auto;padding:12px 22px;display:flex;align-items:center;gap:18px}
+  .brand{font-weight:800;letter-spacing:-.02em;font-size:1.08rem;display:flex;align-items:center;gap:9px}
+  .brand .dot{width:11px;height:11px;border-radius:3px;background:linear-gradient(135deg,var(--a),var(--b) 55%,var(--c));box-shadow:0 0 0 4px var(--a-soft)}
+  .nav-links{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+  .nav-links a{color:var(--muted);font-size:.86rem;font-weight:600;padding:6px 10px;border-radius:8px}
+  .nav-links a:hover{color:var(--ink);background:#fff;text-decoration:none}
+  .nav-links a.back{color:var(--char);border:1px solid var(--line);background:#fff}
+  @media(max-width:820px){.nav-links a:not(.back){display:none}}
+
+  .hero{padding:clamp(2.6rem,2rem+5vw,5rem) 0 clamp(1.5rem,1rem+2vw,2.5rem);position:relative;overflow:hidden}
+  .hero:before{content:"";position:absolute;inset:0;background:
+    radial-gradient(45% 70% at 92% -10%,var(--b-soft) 0%,transparent 60%),
+    radial-gradient(45% 70% at -5% 110%,var(--a-soft) 0%,transparent 55%);opacity:.7;z-index:0}
+  .hero .wrap{position:relative;z-index:1}
+  .kicker{display:inline-flex;align-items:center;gap:8px;font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--char);background:#fff;border:1px solid var(--line);padding:6px 13px;border-radius:999px;box-shadow:var(--shadow)}
+  .hero h1{font-size:clamp(2.1rem,1.4rem+3.5vw,3.6rem);margin:20px 0 8px;letter-spacing:-.03em;max-width:22ch}
+  .hero .slogan{font-size:clamp(1.05rem,1rem+.6vw,1.3rem);font-weight:600;color:var(--char);max-width:60ch;margin:.3rem 0 1.1rem}
+  .hero .meta{color:var(--muted);font-size:.92rem;max-width:66ch} .hero .meta b{color:var(--ink)}
+
+  /* shared-shape band */
+  .shape{margin-top:1.8rem;background:var(--char);color:#efe9e1;border-radius:18px;padding:clamp(1.4rem,1rem+2vw,2.2rem)}
+  .shape .lab{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#d6b48c}
+  .shape .formula{font-size:clamp(1.05rem,.9rem+.8vw,1.4rem);font-weight:800;color:#fff;margin:.5rem 0 .2rem;letter-spacing:-.01em}
+  .shape p{margin:.6rem 0 0;color:#d8d0c6;font-size:.93rem}
+  .shape b{color:#fff}
+
+  section.block{padding:var(--space) 0;border-top:1px solid var(--line)}
+  .sec-kicker{font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  section.block h2{font-size:clamp(1.6rem,1.3rem+1.8vw,2.3rem);margin:.5rem 0 1rem;max-width:30ch}
+  .lead{font-size:1.04rem;color:var(--char);max-width:64ch}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:1.6rem}
+  @media(max-width:900px){.cards{grid-template-columns:1fr}}
+  .pcard{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s}
+  .pcard:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .pcard:before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:4px;border-radius:0 4px 4px 0}
+  .pcard.a:before{background:var(--a)} .pcard.b:before{background:var(--b)} .pcard.c:before{background:var(--c)}
+  .pcard .pno{font-size:.72rem;font-weight:800;letter-spacing:.06em;color:var(--muted)}
+  .pcard .tagrec{font-size:.66rem;font-weight:800;color:#fff;padding:2px 8px;border-radius:999px;margin-left:8px}
+  .pcard.a .tagrec{background:var(--a)} .pcard.b .tagrec{background:var(--b)}
+  .pcard h3{font-size:1.5rem;letter-spacing:-.02em;margin:.3rem 0 .1rem}
+  .pcard.a h3{color:var(--a)} .pcard.b h3{color:var(--b)} .pcard.c h3{color:var(--c)}
+  .pcard .role{font-size:.9rem;font-weight:700;color:var(--char);margin:.1rem 0 .7rem;min-height:2.6em}
+  .pcard .desc{font-size:.92rem;color:var(--muted);margin:0 0 1rem} .pcard .desc b{color:var(--ink)}
+  .pcard .nums{list-style:none;padding:0;margin:0 0 1rem;border-top:1px dashed var(--line);padding-top:12px}
+  .pcard .nums li{font-size:.88rem;margin:.3rem 0;color:var(--char)} .pcard .nums li b{color:var(--ink)}
+  .pcard .risk{font-size:.82rem;color:#9a4a2a;background:var(--a-soft);border-radius:8px;padding:8px 11px;margin-top:auto}
+  .pcard.b .risk{color:#175566;background:var(--b-soft)} .pcard.c .risk{color:#2f5e3e;background:var(--c-soft)}
+
+  .tbl{width:100%;border-collapse:collapse;margin:1.4rem 0;font-size:.92rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+  .tbl th,.tbl td{text-align:left;padding:11px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+  .tbl thead th{background:#fbf9f5;font-size:.78rem;letter-spacing:.03em;font-weight:800}
+  .tbl thead th.a{color:var(--a)} .tbl thead th.b{color:var(--b)} .tbl thead th.c{color:var(--c)}
+  .tbl tbody td:first-child{font-weight:700;color:var(--ink);width:22%}
+  .tbl tr:last-child td{border-bottom:none}
+  @media(max-width:680px){.tbl{font-size:.8rem}.tbl th,.tbl td{padding:8px}}
+
+  .two{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:1.2rem}
+  @media(max-width:820px){.two{grid-template-columns:1fr}}
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--shadow)}
+  .panel h3{font-size:1rem;margin:0 0 .5rem}
+  .panel.a h3{color:var(--a)} .panel.b h3{color:var(--b)} .panel.c h3{color:var(--c)}
+  .panel p{margin:0;font-size:.9rem;color:var(--char)}
+  .callout{border-left:4px solid var(--char);background:#efece7;border-radius:0 12px 12px 0;padding:16px 20px;margin:1.4rem 0;font-size:.95rem}
+  .callout b{color:var(--ink)}
+  code{background:#fff;border:1px solid var(--line);padding:1px 6px;border-radius:5px;font-size:.86em;color:var(--char)}
+  footer{border-top:1px solid var(--line);padding:2.4rem 0 3.4rem;color:var(--muted);font-size:.88rem}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="dot"></span>AI 催化劑 · 三方向比較</div>
+    <nav class="nav-links">
+      <a href="#shape">共用範式</a>
+      <a href="#plans">三方向</a>
+      <a href="#compare">比較矩陣</a>
+      <a href="#decide">怎麼選</a>
+      <a class="back" href="../index.html">← 回提案中樞</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="kicker">2026 Net Zero Tech · 選題討論（資工 × 材料）</span>
+    <h1>三個高勝率方向，<br>一起選一個來做。</h1>
+    <p class="slogan">三個都通過深度研究＋對抗式查證（2024-26 一手文獻），都符合本賽事「會贏的形狀」。挑一個當主打，再展開成完整企劃。</p>
+    <p class="meta">共同點：都用「<b>AI 當設計大腦 → 合成非貴金屬催化劑 → 實測 → 幫某產業做成有用的事</b>」這個範式。差別在<b>應用場景</b>（CO₂ 變化學品 / 海水產氫 / 稀土回收）與各自的風險。</p>
+
+    <div class="shape" id="shape">
+      <div class="lab">三方向共用的勝率邏輯</div>
+      <div class="formula">AI 設計大腦 → 非貴金屬催化劑（實體）→ 實測效能 → 應用</div>
+      <p><b>實體</b>＝催化劑（材料系舞台）；<b>應用</b>＝產氫/變化學品/回收（不是只算數字）；<b>AI 智慧在哪</b>＝GNN 預測吸附能 &lt;0.1 eV、貝氏優化掃 10¹² 組合，<b>發現新配方而非重現教科書</b>（已有 2024-25 案例證明「AI 設計→實驗驗證」走得通）。</p>
+      <p><b>報名前（無實驗室）軟體先鋒</b>：CS 用公開資料（OCx24）訓練 AI 引擎 → 產出「候選催化劑排名＋預測效能」硬數字＋設計 demo；<b>入圍後</b>材料系合成 AI 選出的 Top 候選、實測，閉環。</p>
+    </div>
+  </div>
+</div>
+
+<section class="block" id="plans">
+  <div class="wrap">
+    <span class="sec-kicker">候選方案</span>
+    <h2>三個方向</h2>
+    <p class="lead">每張卡＝一個方向：核心實體、應用、查證過的國際對標數字、最大風險。</p>
+    <div class="cards">
+
+      <div class="pcard a">
+        <div class="pno">方向 A<span class="tagrec">應用最強</span></div>
+        <h3>CarbonForge</h3>
+        <p class="role">AI 設計銅催化劑，把廢氣 CO₂ 變有價化學品</p>
+        <p class="desc">工廠/半導體廠<b>煙道氣（15% CO₂）直接電解</b>成乙烯/乙醇，<b>免昂貴捕碳純化</b>。非貴金屬銅。</p>
+        <ul class="nums">
+          <li><b>800 mA/cm²</b>、C2+ 效率 <b>78%</b>（純）/<b>70.5%</b>（煙道氣）</li>
+          <li>單程碳效率 ~61% vs 中性/鹼性 <b>≤25%</b></li>
+          <li>省 <b>~50%</b> CO₂ 回收能耗</li>
+          <li>缺口：酸性 CO₂→C2+，<b>未商業化</b></li>
+        </ul>
+        <div class="risk">⚠️ CO₂RR 選擇性最難；耐久未到 800 mA/cm²；真實煙道氣含 O₂</div>
+      </div>
+
+      <div class="pcard b">
+        <div class="pno">方向 B<span class="tagrec">最對齊冠軍</span></div>
+        <h3>SeaH2</h3>
+        <p class="role">AI 設計抗腐蝕催化劑，海水直接產氫</p>
+        <p class="desc">用 AI 設計<b>抗氯腐蝕非貴金屬/高熵</b>催化劑，<b>海水直接電解產氫</b>（台灣海島、不搶淡水）。</p>
+        <ul class="nums">
+          <li><b>100 mA/cm²@208 mV</b>、OER 穩 <b>1500h</b></li>
+          <li>電解槽 <b>1 A/cm²@2.18V、500h</b> 無衰退</li>
+          <li>海水連續 400h（小電流）</li>
+          <li>缺口：氯腐蝕/CER 競爭<b>未解</b></li>
+        </ul>
+        <div class="risk">⚠️ 氫催化劑賽道最擠，需靠「海水抗腐蝕＋AI」區隔；工業電流耐久未達</div>
+      </div>
+
+      <div class="pcard c">
+        <div class="pno">方向 C · 備案</div>
+        <h3>ReClaim</h3>
+        <p class="role">AI 優化電化學稀土回收</p>
+        <p class="desc">用 AI 優化從廢 NdFeB 磁鐵<b>電化學、無酸</b>回收稀土的條件，閉迴路。</p>
+        <ul class="nums">
+          <li><b>&gt;95%</b> 稀土＋鈷回收、&gt;85% 鐵去除</li>
+          <li>試劑原位生成、單反應器閉迴路</li>
+          <li>對齊 <b>2024 主賽冠軍</b>場域</li>
+          <li>缺口：須<b>限定電化學路線</b>才成立</li>
+        </ul>
+        <div class="risk">⚠️ 缺口最脆弱（一般回收已商業化）；AI 角色最弱（調參數）</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="block" id="compare">
+  <div class="wrap">
+    <span class="sec-kicker">並排比較</span>
+    <h2>三方向決策矩陣</h2>
+    <table class="tbl">
+      <thead><tr><th>比較項目</th><th class="a">A · CarbonForge</th><th class="b">B · SeaH2</th><th class="c">C · ReClaim</th></tr></thead>
+      <tbody>
+        <tr><td>應用故事強度</td><td>★★★ 廢氣變黃金</td><td>★★ 產氫</td><td>★★ 回收</td></tr>
+        <tr><td>商業化清晰度</td><td>★★★ 賣化學品＋避碳費</td><td>★★ 降氫成本</td><td>★★ 賣回收稀土</td></tr>
+        <tr><td>AI 嵌入深度</td><td>★★★ 設計選擇性</td><td>★★★ 設計抗腐蝕</td><td>★ 調參數</td></tr>
+        <tr><td>對齊歷屆冠軍</td><td>★★ CCUS 主場</td><td>★★★ 直接命中 2025 冠軍</td><td>★★★ 直接命中 2024 冠軍</td></tr>
+        <tr><td>缺口穩固度</td><td>★★★ 明確未商業化</td><td>★★ 未解但人多</td><td>★ 最脆弱，須限定</td></tr>
+        <tr><td>賽道擁擠度（越空越好）</td><td>★★★ CO₂→C2+ 較少人</td><td>★ 氫催化劑最擠</td><td>★★</td></tr>
+        <tr><td>台灣痛點貼合</td><td>★★★ 點源＋碳費＋半導體</td><td>★★★ 海島綠氫</td><td>★★ 材料自主</td></tr>
+        <tr><td>可行性（設備）</td><td>中：電化學＋氣相層析</td><td>中：電化學</td><td>中：電化學＋ICP</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="block" id="decide">
+  <div class="wrap">
+    <span class="sec-kicker">給組員的決策提示</span>
+    <h2>那……選哪個？</h2>
+    <div class="two">
+      <div class="panel a"><h3>選 A（CarbonForge）如果——</h3><p>想要應用故事最炸、最差異化（廢氣變乙烯/乙醇），且 CO₂→C2+ 賽道不擠。能接受「CO₂ 選擇性很難」這個技術風險。</p></div>
+      <div class="panel b"><h3>選 B（SeaH2）如果——</h3><p>想要最穩、最對齊冠軍（2025 國際賽冠軍就是海水製氫催化劑）。願意用「海水抗腐蝕＋AI」在擁擠的氫賽道做出區隔。</p></div>
+      <div class="panel c"><h3>選 C（ReClaim）如果——</h3><p>想走循環經濟、對齊 2024 冠軍。但建議當備案——缺口最脆弱、AI 角色最弱。</p></div>
+    </div>
+    <div class="callout">
+      <p><b>建議：</b>主打 <b>A（CarbonForge）</b> 或 <b>B（SeaH2）</b>，C 當備案。三者報名前都走同一條「AI 軟體先鋒」路徑，所以<b>可以先平行做 AI 引擎，等定案再決定合成哪個催化劑</b>，不浪費時間。</p>
+      <p style="margin:.6rem 0 0"><b>共同誠實前提：</b>全部是實驗室規模、非工業級；報名前硬數字來自 AI 篩選＋公開資料＋國際對標，實體驗證待入圍後（需 potentiostat、電化學槽、XRD/XRF 或 ICP）。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>AI 催化劑 · 三方向比較</b> — 組員選題討論頁。完整中文比較見 <code>02_提案核心/AI催化劑_三方向比較_組員討論_中文版.md</code>；查證與來源見深度研究報告（記憶 net-zero-deep-research-2026）。</p>
+    <p>關鍵時程：報名截止 6/25 · 入圍公告 7/10 · 官方評分標準 7 月釋出 · 決賽 8/19。所有對外文件限英語。｜<a href="../index.html">← 回提案中樞</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
