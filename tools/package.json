@@ -1,0 +1,10 @@
+{
+  "name": "leafcarbon-tools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "LeafCarbon 重生工具：demo 數據 + 繳件 PDF",
+  "dependencies": {
+    "markdown-it": "^14",
+    "mermaid": "^11"
+  }
+}
