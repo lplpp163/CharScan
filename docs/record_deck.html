@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeafCarbon · Recording Deck</title>
+<style>
+  :root{
+    --bg:#0a0e13; --bg2:#0e141b; --surface:#141c25; --surface2:#1b2530;
+    --line:#26323f; --text:#e7eef5; --muted:#8aa0b4; --dim:#5c7081;
+    --accent:#3ddc84; --accent2:#5ad1ff; --amber:#ffc44d; --red:#ff7a7a;
+    --mono:ui-monospace,"Cascadia Code","SF Mono",Consolas,monospace;
+    --sans:"Segoe UI",system-ui,-apple-system,"Microsoft JhengHei",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:#05080b;color:var(--text);font-family:var(--sans);overflow:hidden}
+
+  /* 16:9 stage, scales to viewport */
+  #stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+  #frame{position:relative;width:min(100vw,177.78vh);height:min(56.25vw,100vh);
+    background:radial-gradient(1200px 620px at 80% -14%, #13202b 0%, transparent 58%),var(--bg);
+    overflow:hidden}
+  .slide{position:absolute;inset:0;padding:6.2% 7%;opacity:0;visibility:hidden;
+    transition:opacity .5s ease;display:flex;flex-direction:column;justify-content:center}
+  .slide.on{opacity:1;visibility:visible}
+  .slide.on .rise{animation:rise .6s cubic-bezier(.16,1,.3,1) both}
+  .slide.on .rise:nth-child(2){animation-delay:.06s}
+  .slide.on .rise:nth-child(3){animation-delay:.12s}
+  .slide.on .rise:nth-child(4){animation-delay:.18s}
+  @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+  .kick{font-family:var(--mono);font-size:1.05vw;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:1.6vw}
+  h1{font-size:7.4vw;line-height:.98;letter-spacing:-.02em;margin:0;font-weight:800}
+  h1 .leaf{color:var(--accent)}
+  h2{font-size:4.1vw;line-height:1.04;letter-spacing:-.02em;margin:0 0 1.3vw;font-weight:800}
+  .lede{font-size:1.85vw;color:var(--muted);max-width:46ch;line-height:1.45;font-weight:400}
+  .lede b{color:var(--text);font-weight:600}
+  .accent{color:var(--accent)} .cyan{color:var(--accent2)} .amber{color:var(--amber)}
+
+  /* title slide */
+  .title-row{display:flex;align-items:baseline;gap:1.6vw;flex-wrap:wrap}
+  .pill{font-family:var(--mono);font-size:1.15vw;color:var(--accent);border:1px solid var(--accent);
+    border-radius:999px;padding:.4vw 1.2vw}
+  .by{margin-top:3.4vw;font-size:1.35vw;color:var(--dim);font-family:var(--mono)}
+
+  /* generic two-col */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:4vw;align-items:center}
+  .cols.narrow{grid-template-columns:1.1fr .9fr}
+
+  /* destructive flow (problem) */
+  .flow{display:flex;align-items:center;gap:1.1vw;flex-wrap:wrap;font-family:var(--mono);font-size:1.4vw}
+  .chip{background:var(--surface);border:1px solid var(--line);border-radius:.8vw;padding:1vw 1.3vw;color:var(--text)}
+  .chip.bad{border-color:var(--red);color:#ffd5d5}
+  .arw{color:var(--dim);font-size:1.7vw}
+  .strike{margin-top:2.4vw;font-size:1.6vw;color:var(--red);font-weight:600}
+
+  /* pipeline */
+  .pipe{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1vw;width:100%}
+  .step{background:var(--surface);border:1px solid var(--line);border-radius:1vw;padding:1.5vw 1.3vw;position:relative}
+  .step .n{font-family:var(--mono);font-size:1.05vw;color:var(--accent);margin-bottom:.7vw}
+  .step .h{font-size:1.5vw;font-weight:700;line-height:1.12;margin-bottom:.5vw}
+  .step .d{font-size:1.05vw;color:var(--muted);line-height:1.4}
+  .step:not(:last-child):after{content:"→";position:absolute;right:-1.0vw;top:50%;transform:translateY(-50%);
+    color:var(--dim);font-size:1.5vw;z-index:2}
+
+  /* equation */
+  .eq{font-family:var(--mono);font-size:3.6vw;font-weight:800;letter-spacing:-.01em;display:flex;
+    align-items:baseline;gap:1.2vw;flex-wrap:wrap}
+  .eq .op{color:var(--dim)} .eq .v1{color:var(--accent)} .eq .v2{color:var(--accent2)}
+  .src{margin-top:2vw;font-family:var(--mono);font-size:1.15vw;color:var(--dim);line-height:1.6}
+  .src b{color:var(--muted);font-weight:600}
+
+  /* big stats */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2vw;width:100%}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:1.1vw;padding:2vw 1.6vw}
+  .stat.lead{border-color:#33485b}
+  .stat .num{font-family:var(--mono);font-weight:800;font-size:4.6vw;line-height:1;color:var(--accent)}
+  .stat .num.cyan{color:var(--accent2)}
+  .stat .num small{font-size:1.5vw;color:var(--muted);font-weight:400}
+  .stat .cap{font-size:1.15vw;color:var(--muted);margin-top:1vw;line-height:1.4}
+  .vs{margin-top:2.6vw;display:flex;gap:1.4vw;align-items:stretch;font-size:1.3vw}
+  .vs .b{flex:1;border-radius:.9vw;padding:1.2vw 1.4vw;line-height:1.4}
+  .vs .old{background:rgba(255,122,122,.08);border:1px solid rgba(255,122,122,.4);color:#ffd5d5}
+  .vs .new{background:rgba(61,220,132,.08);border:1px solid rgba(61,220,132,.45);color:#d4f8e3}
+  .vs b{display:block;font-family:var(--mono);font-size:.95vw;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5vw;opacity:.8}
+
+  /* live-demo cue slide */
+  .cue{display:flex;flex-direction:column;align-items:flex-start;gap:2.2vw}
+  .play{display:flex;align-items:center;gap:1.6vw}
+  .play .disc{width:6vw;height:6vw;border-radius:50%;background:var(--accent);color:#06210f;display:flex;
+    align-items:center;justify-content:center;font-size:2.6vw;box-shadow:0 0 0 .9vw rgba(61,220,132,.16)}
+  .checklist{font-family:var(--mono);font-size:1.3vw;color:var(--muted);line-height:2}
+  .checklist span{color:var(--accent)}
+
+  /* scope */
+  .guard{display:flex;gap:1.4vw;flex-wrap:wrap;margin-bottom:2.4vw}
+  .guard .g{font-family:var(--mono);font-size:1.35vw;border:1px dashed var(--amber);color:var(--amber);
+    border-radius:.8vw;padding:.9vw 1.4vw}
+  .pools{display:flex;gap:1.2vw;flex-wrap:wrap}
+  .pool{background:var(--surface);border:1px solid var(--line);border-radius:1vw;padding:1.5vw 2vw;
+    font-size:1.7vw;font-weight:700}
+  .pool small{display:block;font-size:1vw;color:var(--muted);font-weight:400;margin-top:.4vw;font-family:var(--mono)}
+
+  /* chrome: progress, counter, timecode, teleprompter */
+  #bar{position:fixed;left:0;top:0;height:3px;background:var(--accent);width:0;z-index:40;transition:width .4s}
+  #count{position:fixed;right:18px;bottom:14px;font-family:var(--mono);font-size:13px;color:var(--dim);z-index:40}
+  #tc{position:fixed;left:18px;bottom:14px;font-family:var(--mono);font-size:13px;color:var(--dim);z-index:40}
+  #hint{position:fixed;left:50%;bottom:13px;transform:translateX(-50%);font-family:var(--mono);font-size:11.5px;
+    color:#3a4856;z-index:40;letter-spacing:.04em}
+  #prompt{position:fixed;left:0;right:0;bottom:0;background:linear-gradient(180deg,transparent,rgba(3,5,7,.92) 26%);
+    padding:46px 7% 30px;z-index:35;display:none;font-size:clamp(15px,1.55vw,24px);line-height:1.5;
+    color:#dfe9f2;text-align:center}
+  #prompt.on{display:block}
+  #prompt .pk{font-family:var(--mono);font-size:.7em;color:var(--accent);letter-spacing:.1em;display:block;margin-bottom:8px}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div id="frame">
+
+  <!-- 0 · Title -->
+  <section class="slide" data-tc="0:00">
+    <div class="title-row rise">
+      <h1><span class="leaf">Leaf</span>Carbon</h1>
+      <span class="pill">a carbon ruler</span>
+    </div>
+    <p class="lede rise" style="margin-top:2vw">Snap one low-cost photo of a plant — <b>non-destructively</b> estimate how much carbon it holds.</p>
+    <div class="by rise">2026 Net Zero Tech · Sustainability — Carbon Removal &amp; MRV</div>
+  </section>
+
+  <!-- 1 · Problem -->
+  <section class="slide" data-tc="0:00">
+    <div class="kick rise">The bottleneck</div>
+    <h2 class="rise">For carbon removal,<br>the hard part is <span class="accent">measurement</span>.</h2>
+    <div class="flow rise" style="margin-top:1.2vw">
+      <span class="chip">harvest plant</span><span class="arw">→</span>
+      <span class="chip">oven-dry 2–3 days</span><span class="arw">→</span>
+      <span class="chip bad">plant destroyed</span>
+    </div>
+    <div class="strike rise">Too slow and costly to repeat at scale → projects can't prove how much carbon → can't earn credit.</div>
+  </section>
+
+  <!-- 2 · The idea -->
+  <section class="slide" data-tc="0:40">
+    <div class="cols narrow">
+      <div>
+        <div class="kick rise">The idea</div>
+        <h2 class="rise">A measurement<br>that is just a <span class="accent">photo</span>.</h2>
+        <p class="lede rise">One fixed-setup photo → a model estimates <b>dry biomass</b>, then <b>carbon</b> — each with a confidence range.</p>
+      </div>
+      <div class="rise">
+        <div class="pipe" style="grid-template-columns:1fr">
+          <div class="step"><div class="n">setup</div><div class="h">Fixed side-view rig</div><div class="d">Same distance &amp; angle every time — phone camera is enough.</div></div>
+          <div class="step" style="margin-top:1vw"><div class="n">calibrate · once</div><div class="h">A few oven-dried samples</div><div class="d">Anchors “image → biomass”. After that, every new plant is only a photo.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · Live demo cue -->
+  <section class="slide" data-tc="1:15">
+    <div class="cue">
+      <div class="kick rise">Live tool</div>
+      <div class="play rise"><div class="disc">▶</div><h2 style="margin:0">See it run on a real plant.</h2></div>
+      <div class="checklist rise">
+        <span>01</span> &nbsp;Pick a photo — Day 7 → 18 → 27 → 35<br>
+        <span>02</span> &nbsp;Detect canopy &nbsp;<span style="color:var(--dim)">·</span>&nbsp; ExG + HSV segmentation<br>
+        <span>03</span> &nbsp;Dry weight &nbsp;<span style="color:var(--dim)">·</span>&nbsp; 95% confidence interval<br>
+        <span>04</span> &nbsp;Carbon &nbsp;<span style="color:var(--dim)">·</span>&nbsp; biomass × 0.47
+      </div>
+      <p class="lede rise" style="font-size:1.3vw">Random Forest · side-view structure + cumulative environment (light, GDD, UV) · interpretable.</p>
+    </div>
+  </section>
+
+  <!-- 4 · Carbon conversion -->
+  <section class="slide" data-tc="2:35">
+    <div class="kick rise">From biomass to carbon</div>
+    <div class="eq rise" style="margin-top:.8vw">
+      <span class="v2">carbon</span><span class="op">=</span><span class="v1">dry biomass</span><span class="op">×</span><span>0.47</span>
+    </div>
+    <p class="lede rise" style="margin-top:2vw">The carbon fraction of dry plant matter is <b>nearly constant</b> — so we only need to measure biomass well. No per-plant elemental analysis.</p>
+    <div class="src rise">
+      <b>0.47</b> — IPCC 2006 default carbon fraction · Ma et al. 2018: 45.0–47.9% across 4,318 species<br>
+      <b>Lettuce</b> — a fast validation crop, chosen on purpose: a 35-day cycle tunes the method quickly. <span class="amber">Not the carbon sink.</span>
+    </div>
+  </section>
+
+  <!-- 5 · Results -->
+  <section class="slide" data-tc="3:15">
+    <div class="kick rise">Measured result — not a simulation</div>
+    <div class="stats rise" style="margin-top:1vw">
+      <div class="stat lead"><div class="num">0.64<small> R²</small></div><div class="cap">per-plant dry weight, leave-one-day-out cross-validation</div></div>
+      <div class="stat"><div class="num cyan">0.43<small> g</small></div><div class="cap">RMSE on per-plant dry weight</div></div>
+      <div class="stat"><div class="num">72<small> plants</small></div><div class="cap">our own lettuce dataset · across 24 days</div></div>
+    </div>
+    <div class="vs rise">
+      <div class="b old"><b>Standard method</b>days of oven-drying · destroys the plant · one-shot</div>
+      <div class="b new"><b>LeafCarbon</b>one photo · seconds · non-destructive · re-measurable · every estimate carries its own uncertainty</div>
+    </div>
+  </section>
+
+  <!-- 6 · Scope -->
+  <section class="slide" data-tc="4:15">
+    <div class="kick rise">What this is — and isn't</div>
+    <div class="guard rise" style="margin-top:.8vw">
+      <span class="g">measurement ≠ carbon credit</span>
+      <span class="g">lettuce ≠ carbon sink</span>
+    </div>
+    <h2 class="rise">LeafCarbon is a low-cost,<br>non-destructive <span class="accent">ruler</span>.</h2>
+    <p class="lede rise" style="margin-bottom:1.6vw">Once calibrated, the same approach extends to the pools that matter — where cheap measurement is exactly what's missing.</p>
+    <div class="pools rise">
+      <div class="pool">Forests<small>standing biomass</small></div>
+      <div class="pool">Soils<small>soil organic carbon</small></div>
+      <div class="pool">Restoration<small>project MRV</small></div>
+    </div>
+  </section>
+
+  <!-- 7 · Close -->
+  <section class="slide" data-tc="4:30">
+    <div class="title-row rise"><h1><span class="leaf">Leaf</span>Carbon</h1></div>
+    <p class="lede rise" style="margin-top:1.6vw;font-size:2.1vw">If you can't measure it cheaply,<br>you can't prove it — and you can't credit it.<br><span class="accent">We measure it.</span></p>
+    <div class="by rise">2026 Net Zero Tech · Sustainability</div>
+  </section>
+
+</div></div>
+
+<div id="prompt"><span class="pk">SPEAKER SCRIPT — press S to hide</span><span id="prompt-text"></span></div>
+<div id="bar-pad"></div>
+<div id="tc">—</div>
+<div id="count">1 / 8</div>
+<div id="hint">← → / Space&nbsp;&nbsp;move&nbsp;&nbsp;·&nbsp;&nbsp;S&nbsp;teleprompter&nbsp;&nbsp;·&nbsp;&nbsp;F11&nbsp;fullscreen</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var prompts=[
+    "LeafCarbon — a carbon ruler. Snap one low-cost photo of a plant and non-destructively estimate how much carbon it holds.",
+    "For any project that removes carbon, the hard part is usually the measurement — knowing how much carbon a plant actually holds. The standard way is to harvest the plant and oven-dry it for two to three days. It destroys the plant, and it is far too slow and costly to repeat at scale. So projects that genuinely capture carbon often cannot prove how much — and without proof, they cannot earn credit for it.",
+    "LeafCarbon turns that measurement into a single photo. You photograph one plant with a simple fixed setup, and a model estimates its dry biomass — and from that, its carbon — each with a confidence range. A small set of oven-dried samples calibrates the model just once. After that, every new plant is only a photo: non-destructive, and a few seconds instead of a few days.",
+    "Here is the tool itself. I pick one photo of a single lettuce plant. The model first detects the green canopy — a simple ExG-plus-HSV segmentation — and crops it. From that canopy it reads side-view structure: how much green, the plant's height and shape. It combines this with the cumulative environment the plant has seen — light, growing-degree-days, UV. A Random Forest then turns these into a per-plant dry-weight estimate, with a ninety-five-percent confidence interval. Watch the same plant across its cycle — day seven, eighteen, twenty-seven, thirty-five — the estimate climbs as the plant actually grows. Because the model is interpretable, we can see which features carry the signal.",
+    "Carbon follows directly from biomass. The carbon fraction of dry plant matter is nearly constant — about forty-seven percent; across more than four thousand species it sits between forty-five and forty-eight. So carbon equals dry biomass times zero-point-four-seven. We only have to measure biomass well — no elemental analysis per plant. Lettuce is a fast validation crop we chose on purpose: a thirty-five-day cycle lets us tune and check the method quickly.",
+    "On our own lettuce dataset — seventy-two plants across twenty-four days — the model predicts per-plant dry weight with an R-squared of about zero-point-six-four and an RMSE of about zero-point-four-three grams, under leave-one-day-out cross-validation. This is a measured result, not a simulation. The contrast with the standard method is the point: days and a destroyed plant become one photo and a few seconds, and the same plant can be measured again later. Every estimate carries its own uncertainty range, so we always know how confident it is.",
+    "One thing we are careful about: this is measurement, not a carbon credit — and lettuce is the test crop, not the carbon sink. What LeafCarbon builds is a low-cost, non-destructive ruler. Once calibrated, the same approach extends to the carbon pools that actually matter — forests, soils, restoration sites — where cheap measurement is exactly what is missing today.",
+    "If you can't measure it cheaply, you can't prove it — and you can't credit it. LeafCarbon measures it. Thank you."
+  ];
+  var i=0, n=slides.length;
+  var bar=document.getElementById('bar'), count=document.getElementById('count'),
+      tc=document.getElementById('tc'), prompt=document.getElementById('prompt'),
+      ptext=document.getElementById('prompt-text');
+  function show(k){
+    i=Math.max(0,Math.min(n-1,k));
+    slides.forEach(function(s,j){s.classList.toggle('on',j===i)});
+    bar.style.width=((i)/(n-1)*100)+'%';
+    count.textContent=(i+1)+' / '+n;
+    tc.textContent=slides[i].getAttribute('data-tc')||'';
+    ptext.textContent=prompts[i]||'';
+  }
+  function next(){show(i+1)} function prev(){show(i-1)}
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();next()}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
+    else if(e.key==='Home'){show(0)} else if(e.key==='End'){show(n-1)}
+    else if(e.key==='s'||e.key==='S'){prompt.classList.toggle('on')}
+  });
+  document.getElementById('frame').addEventListener('click',function(e){
+    var w=window.innerWidth; if(e.clientX < w*0.28){prev()} else {next()}
+  });
+  show(0);
+})();
+</script>
+</body>
+</html>
