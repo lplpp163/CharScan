@@ -106,9 +106,9 @@
     <p class="slogan">用低成本影像、非破壞地估算一株植物含多少碳。這頁是給組員的中樞：方向已定，集中放企劃書、摘要表與 demo 口白，方便查看。</p>
     <p class="meta">生物碳移除真正卡住的，常常是<b>量測</b>這一步——固了多少碳，要量得準也量得起。LeafCarbon 用一張照片加上少量烘乾乾重校正，估出每株生物量、再換成碳量（碳 = 乾生物量 × 0.47）。</p>
     <div class="pills">
-      <span class="pill">每株乾重 <b>R²≈0.61</b>（留一日交叉驗證）</span>
-      <span class="pill">RMSE <b>≈0.44 g</b></span>
-      <span class="pill">自有萵苣資料 <b>569 張／69 株</b></span>
+      <span class="pill">每株乾重 <b>R²≈0.64</b>（留一日交叉驗證）</span>
+      <span class="pill">RMSE <b>≈0.43 g</b></span>
+      <span class="pill">自有萵苣資料 <b>569 張／72 株</b></span>
       <span class="pill">非破壞 · <b>秒級</b></span>
     </div>
   </div>
@@ -126,7 +126,7 @@
         <tr><td>輸入</td><td>低成本影像（冠層面積、株高、綠度、冠層密度）＋環境時序（累積光照、生長度日）。</td></tr>
         <tr><td>模型</td><td>綠色冠層擷取 → 可解釋結構特徵 → 隨機森林回歸每株乾重，並帶信心區間。</td></tr>
         <tr><td>輸出 → 碳量</td><td>每株乾重 → × 0.47 碳分率 = 碳量（不需對每株做元素分析）。</td></tr>
-        <tr><td>實測成績</td><td>側拍結構＋累積環境，留一日交叉驗證 <b>R²≈0.61、RMSE≈0.44 g（69 株）</b>。</td></tr>
+        <tr><td>實測成績</td><td>側拍結構＋累積環境，留一日交叉驗證 <b>R²≈0.64、RMSE≈0.43 g（72 株）</b>。</td></tr>
       </tbody>
     </table>
   </div>
@@ -187,7 +187,7 @@
     <table class="tbl">
       <thead><tr><th>共同特性</th><th>LeafCarbon 目前對到的點</th></tr></thead>
       <tbody>
-        <tr><td>① 硬數字當主角</td><td>每株乾重 R²≈0.61、RMSE≈0.44 g，自有資料實測。</td></tr>
+        <tr><td>① 硬數字當主角</td><td>每株乾重 R²≈0.64、RMSE≈0.43 g，自有資料實測。</td></tr>
         <tr><td>② 便宜取代昂貴</td><td>把「採收＋烘乾 2–3 天」換成「拍照、秒級、非破壞」。</td></tr>
         <tr><td>⑤ 真樣品真實證，非概念</td><td>自種萵苣逐日拍攝＋乾重，留一日交叉驗證，非模擬。</td></tr>
         <tr><td>⑦ 團隊專業補滿</td><td>資工（模型／系統）×材料（烘乾校正／影像標準化）雙覆蓋。<span class="muted"> 建議再補一位碳權/土壤顧問補缺口。</span></td></tr>
@@ -199,7 +199,7 @@
 
 <footer>
   <div class="wrap">
-    <p><b>LeafCarbon · 提案中樞</b> — 本屆方向已定。研究底稿見專案根目錄 <code>02_提案核心/LeafCarbon_深度研究簡報.md</code> 與 <code>LeafCarbon_企劃書_中文版.md</code>；實驗結果見 <code>03_實驗數據/綠色比例分析_結果.md</code>。</p>
+    <p><b>LeafCarbon · 提案中樞</b> — 本屆方向已定。研究底稿見專案根目錄 <code>02_提案核心/LeafCarbon_深度研究簡報.md</code> 與 <code>05_報名繳件_英文/02_LeafCarbon_Project_Plan_中文閱讀版.md</code>；實驗結果見 <code>03_實驗數據/綠色比例分析_結果.md</code>。</p>
     <p class="muted">關鍵時程：報名截止 6/25 · 入圍公告 7/10 · 決賽 8/19。所有對外文件限英語。</p>
     <p class="next-year">其他候選方向（生物炭 H/C、AI 催化劑三方向）本屆不走，保留供明年參考：<a href="ai-catalyst/index.html">AI 催化劑三方向（暫存）</a>。</p>
   </div>

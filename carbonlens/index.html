@@ -184,8 +184,8 @@
       </div>
       <div class="card win">
         <span class="tag">目前成績</span>
-        <h3>自有資料 R²≈0.61</h3>
-        <p>自種萵苣 569 張影像、其中 69 株有單顆乾重。側拍結構＋累積環境，留一日交叉驗證 R²≈0.61、RMSE≈0.44 g。實測，非模擬。</p>
+        <h3>自有資料 R²≈0.64</h3>
+        <p>自種萵苣 569 張影像、其中 72 株有單顆乾重。側拍結構＋累積環境，留一日交叉驗證 R²≈0.64、RMSE≈0.43 g。實測，非模擬。</p>
       </div>
     </div>
   </div>
@@ -238,7 +238,7 @@
         <tr><td><b>信心分流</b></td><td>每筆估計帶信心區間，只有臨界樣品送驗——這讓輸出能當作 MRV 使用。</td></tr>
       </tbody>
     </table>
-    <p class="muted" style="font-size:.92rem">補充：我們也在這個資料規模下試過微調 CNN（凍結 ResNet 特徵），它沒有勝過可解釋的結構特徵＋環境（CNN R²≈0.46 對 0.61），主要是樣本少、且把影像縮成正方形會丟掉株高線索。深度感測（如手機 LiDAR）與更多作物列為日後提升準度的方向，不改變架構。</p>
+    <p class="muted" style="font-size:.92rem">補充：我們也在這個資料規模下試過微調 CNN（凍結 ResNet 特徵），它沒有勝過可解釋的結構特徵＋環境（CNN R²≈0.46 對 0.64），主要是樣本少、且把影像縮成正方形會丟掉株高線索。深度感測（如手機 LiDAR）與更多作物列為日後提升準度的方向，不改變架構。</p>
   </div>
 </section>
 
@@ -247,13 +247,13 @@
   <div class="wrap">
     <span class="sec-kicker">實測成果</span>
     <h2>自有萵苣資料集上的成績</h2>
-    <p class="lead">在自己種、逐日拍攝的萵苣資料集上，每株乾重模型用其中有單顆乾重的 69 株訓練與驗證，採最嚴格的留一日交叉驗證（預測沒看過的天）。</p>
+    <p class="lead">在自己種、逐日拍攝的萵苣資料集上，每株乾重模型用其中有單顆乾重的 72 株訓練與驗證，採最嚴格的留一日交叉驗證（預測沒看過的天）。</p>
 
     <div class="statline">
-      <div class="stat"><div class="num">R²≈0.61</div><div class="lab">每株乾重 · 留一日交叉驗證</div></div>
-      <div class="stat"><div class="num">≈0.44 g</div><div class="lab">RMSE</div></div>
+      <div class="stat"><div class="num">R²≈0.64</div><div class="lab">每株乾重 · 留一日交叉驗證</div></div>
+      <div class="stat"><div class="num">≈0.43 g</div><div class="lab">RMSE</div></div>
       <div class="stat"><div class="num ember">569 張</div><div class="lab">影像（第 7–35 天）</div></div>
-      <div class="stat"><div class="num ember">69 株</div><div class="lab">有單顆乾重的建模樣本</div></div>
+      <div class="stat"><div class="num ember">72 株</div><div class="lab">有單顆乾重的建模樣本</div></div>
     </div>
 
     <div class="figs">
@@ -263,7 +263,7 @@
       </figure>
       <figure class="fig">
         <img src="../docs/biomass_prediction.png" alt="每株乾重 預測 vs 實測散布圖" />
-        <figcaption><b>圖 2：</b>每株乾重預測 vs 實測，留一日交叉驗證（側拍結構＋累積環境、69 株），R²≈0.61。</figcaption>
+        <figcaption><b>圖 2：</b>每株乾重預測 vs 實測，留一日交叉驗證（側拍結構＋累積環境、72 株），R²≈0.64。</figcaption>
       </figure>
     </div>
 
@@ -375,7 +375,7 @@
       <div class="item">
         <span class="en">⑤ Expected Benefit</span>
         <h3>預期效益（量化）</h3>
-        <p>自有資料每株乾重 R²≈0.61、RMSE≈0.44 g（留一日交叉驗證），實測。傳統採收＋烘乾約 2–3 天，本方法拍照秒級、可重複。專案層級數位 MRV 文獻報導降本約 70–90%。</p>
+        <p>自有資料每株乾重 R²≈0.64、RMSE≈0.43 g（留一日交叉驗證），實測。傳統採收＋烘乾約 2–3 天，本方法拍照秒級、可重複。專案層級數位 MRV 文獻報導降本約 70–90%。</p>
       </div>
       <div class="item">
         <span class="en">⑥ Project Introduction Video（≤5 min）</span>
