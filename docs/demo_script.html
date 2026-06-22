@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LeafCarbon · Demo 影片中英文稿對照表</title>
+<style>
+  :root{
+    --bg:#f7f4ef; --surface:#fff; --ink:#1c1814; --muted:#6d645a;
+    --leaf:#3f7d52; --leaf-soft:#e3efe5; --line:#e7e0d6;
+    --shadow:0 1px 2px rgba(28,24,20,.04),0 8px 28px rgba(28,24,20,.06);
+    --maxw:1040px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,"Segoe UI",sans-serif;
+    line-height:1.7;font-size:16px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  a{color:var(--leaf)}
+  header{padding:42px 0 8px}
+  .kicker{font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--leaf)}
+  h1{font-size:clamp(1.7rem,1.3rem+2vw,2.4rem);margin:.4rem 0 .3rem;letter-spacing:-.02em}
+  .sub{color:var(--muted);max-width:64ch;margin:0 0 .6rem}
+  .note{background:var(--leaf-soft);border-left:4px solid var(--leaf);border-radius:0 10px 10px 0;
+    padding:12px 16px;margin:14px 0 0;font-size:.92rem;color:#2f5a3d}
+  .meta{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:.88rem;margin:14px 0 26px}
+  .meta b{color:var(--ink)}
+  table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);
+    border-radius:14px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:40px}
+  th,td{text-align:left;padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{background:#fbf9f5;font-size:.84rem;letter-spacing:.02em}
+  thead th.en{color:var(--leaf)}
+  tbody tr:last-child td{border-bottom:none}
+  .seg{width:13%;font-weight:700}
+  .seg .t{display:block;color:var(--muted);font-weight:600;font-size:.8rem;margin-top:3px}
+  .en{width:46%;font-size:.95rem}
+  .zh{width:41%;font-size:.95rem;color:#33302b}
+  .scene{display:block;color:var(--muted);font-size:.82rem;font-style:italic;margin-top:8px}
+  footer{color:var(--muted);font-size:.85rem;padding-bottom:48px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="kicker">LeafCarbon · 2026 Net Zero Tech</span>
+    <h1>Demo 影片中英文稿對照表</h1>
+    <p class="sub">≤ 5 分鐘介紹影片的口白草稿。比賽規定影片為英文，所以<b>左欄英文是實際要講的稿</b>，右欄中文是對照與討論用。場景提示為斜體。</p>
+    <div class="note">數字與說法已與摘要表、企劃書一致：每株乾重 R²≈0.61、RMSE≈0.44 g（留一日交叉驗證、69 株）；碳 = 乾生物量 × 0.47；萵苣只是快速驗證作物，不主張它是碳匯。</div>
+    <div class="meta"><span>目標長度：<b>約 4:40</b></span><span>語言：<b>英文口白</b>（中文對照）</span><span>← <a href="../index.html">回入口</a></span></div>
+  </header>
+
+  <table>
+    <thead>
+      <tr><th class="seg">段落 / 時間</th><th class="en">English (spoken)</th><th class="zh">中文對照</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="seg">1. 問題<span class="t">0:00–0:45</span></td>
+        <td class="en">For carbon removal projects, the hard part is often the measurement: knowing how much carbon a plant actually holds. The standard way to measure it is to harvest the plant and oven-dry it for two to three days. It destroys the plant and is too expensive to repeat at scale. So projects that do capture carbon often cannot prove how much, and cannot earn credit for it.
+        <span class="scene">畫面：田間／盆栽萵苣，接烘箱與天平的實拍。</span></td>
+        <td class="zh">對碳移除專案來說，難的常常是量測：一株植物到底固了多少碳。傳統做法要把植株採收、烘乾兩三天，會毀掉植株，也貴到無法大量重複。於是即使固了碳的專案，也常常證明不了固了多少、拿不到碳權。</td>
+      </tr>
+      <tr>
+        <td class="seg">2. 構想<span class="t">0:45–1:25</span></td>
+        <td class="en">We built LeafCarbon, a low-cost way to estimate this from a photo. You photograph the plant with a simple fixed setup, and a model estimates its biomass, and from that its carbon. A small number of oven-dried samples calibrates the model once. After that, each new plant is just a photo.
+        <span class="scene">畫面：固定高度的拍攝架（俯拍＋側拍），手機拍照。</span></td>
+        <td class="zh">我們做了 LeafCarbon，用一張照片低成本估出這個量。用簡單的固定裝置拍植株，模型估出它的生物量、再換成碳量。少量烘乾樣本只需校正模型一次，之後每一株新植物就只是拍一張照。</td>
+      </tr>
+      <tr>
+        <td class="seg">3. 運作方式<span class="t">1:25–2:40</span></td>
+        <td class="en">From the image we extract the green canopy and measure simple structure features: canopy area, plant height, canopy density. We add the local environment over time, the cumulative light and growing-degree-days. A Random Forest turns these into a per-plant dry-weight estimate. The model is interpretable, so we can see which features carry the signal.
+        <span class="scene">畫面：綠色擷取示意（Fig 1）、特徵示意、模型流程圖。</span></td>
+        <td class="zh">從影像擷取綠色冠層，量出簡單的結構特徵：冠層面積、株高、冠層密度。再加入當地的環境時序，累積光照與生長度日。用隨機森林把這些轉成每株乾重的估計。模型可解釋，看得出哪些特徵帶有訊號。</td>
+      </tr>
+      <tr>
+        <td class="seg">4. 碳的換算<span class="t">2:40–3:20</span></td>
+        <td class="en">Carbon follows from biomass. The carbon fraction of plant dry matter is close to constant, about 47 percent, so carbon equals dry biomass times 0.47. That means we only need to measure biomass well; we do not need elemental analysis for every plant. Lettuce here is just a fast validation crop on a 35-day cycle. We do not claim a lettuce is a carbon sink.
+        <span class="scene">畫面：碳 = 乾重 × 0.47 的簡圖；IPCC／Ma et al. 來源小字。</span></td>
+        <td class="zh">碳量由生物量換算。植物乾物質的碳分率接近常數，約 47%，所以碳 = 乾生物量 × 0.47。也就是說我們只要把生物量量好，不需要對每株做元素分析。這裡的萵苣只是 35 天週期的快速驗證作物，我們並不主張萵苣是碳匯。</td>
+      </tr>
+      <tr>
+        <td class="seg">5. 成績與成本<span class="t">3:20–4:20</span></td>
+        <td class="en">On our own lettuce dataset, the model predicts per-plant dry weight with an R-squared of about 0.61 and an RMSE of about 0.44 grams, under leave-one-day-out cross-validation. This is a measured result, not a simulation. And it is fast: the traditional method takes days and destroys the plant, while this takes a photo and a few seconds, and the same plant can be measured again later. Each estimate also reports a confidence interval, so only uncertain samples are sent to the lab.
+        <span class="scene">畫面：預測 vs 實測散布圖（Fig 2，R²≈0.61）；秒級 vs 數天的對比。</span></td>
+        <td class="zh">在我們自己的萵苣資料集上，模型估每株乾重的 R² 約 0.61、RMSE 約 0.44 克，採留一日交叉驗證。這是實測結果，不是模擬。而且很快：傳統方法要數天又毀植株，這個只要拍照、幾秒，同一株之後還能再量。每筆估計也會回報信心區間，只有不確定的才送實驗室。</td>
+      </tr>
+      <tr>
+        <td class="seg">6. 收尾<span class="t">4:20–4:40</span></td>
+        <td class="en">The method does not depend on lettuce. Once calibrated, the same approach can be applied to durable carbon pools such as forests, soil, and restoration sites, where the measurement is the part that is currently missing.
+        <span class="scene">畫面：森林／土壤／復育場景；LeafCarbon 標誌定格。</span></td>
+        <td class="zh">這套方法不綁定萵苣。校正之後，同一套做法可以用在森林、土壤、復育這類持久的碳庫，而那裡正缺的就是量測這一塊。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer>LeafCarbon · Demo 口白草稿（中英對照）。內容對齊 <code>05_報名繳件_英文/</code> 摘要表與企劃書；定稿前以英文口白實際配音計時為準。</footer>
+</div>
+</body>
+</html>
