@@ -37,6 +37,7 @@
   .zh{width:41%;font-size:.95rem;color:#33302b}
   .scene{display:block;color:var(--muted);font-size:.82rem;font-style:italic;margin-top:8px}
   .scene b{color:var(--leaf);font-style:normal}
+  .dir{color:var(--leaf);font-weight:700;white-space:nowrap}
   footer{color:var(--muted);font-size:.85rem;padding-bottom:48px}
   code{background:#efe9e0;padding:1px 6px;border-radius:5px;font-size:.85em}
 </style>
@@ -47,7 +48,7 @@
     <span class="kicker">LeafCarbon · 2026 Net Zero Tech</span>
     <h1>Demo 影片中英文稿對照表</h1>
     <p class="sub">≤ 5 分鐘介紹影片的口白草稿。比賽規定影片為英文，所以<b>左欄英文是實際要講的稿</b>，右欄中文是對照與討論用。場景提示為斜體，已對齊錄影簡報 <code>docs/record_deck.html</code> 的投影片編號與互動 Demo <code>demo/index.html</code>。</p>
-    <div class="note">已對齊目前 demo 介面與數字：管線為 ① 輸入照片 → ② 偵測冠層（綠色填色＋外框）→ ③ <b>模型輸入特徵面板</b>（側拍結構：株高 / 寬高比 / 密實度 / 綠覆蓋；累積環境：溫度 / 日照 / GDD / UV，畫面逐格帶出實際數值）→ ④ 乾重＋信賴範圍 → ⑤ 碳量。範例為同株 <b>Day 7 / 20 / 27 / 35</b>。每株乾重 <b>R²≈0.64、RMSE≈0.43 g</b>，留一日交叉驗證、<b>72 株 / 24 天</b>；模型為 Random Forest（400 棵）；碳 = 乾生物量 × 0.47。萵苣是刻意挑的快速驗證作物，方法目標是遷移到森林、土壤等持久碳庫。</div>
+    <div class="note">已對齊目前 demo 介面與數字：管線為 ① 輸入照片 → ② 偵測冠層（綠色填色＋外框）→ ③ <b>模型輸入特徵面板</b>（側拍結構：株高 / 寬高比 / 密實度 / 綠覆蓋；累積環境：溫度 / 日照 / GDD / UV，畫面逐格帶出實際數值）→ ④ 乾重＋信賴範圍 → ⑤ 碳量。範例為 <b>Day 7 / 20 / 27 / 35</b>（不同株、不同生長階段；逐日烘乾取真值，故每天是不同植株）。每株乾重 <b>R²≈0.64、RMSE≈0.43 g</b>，留一日交叉驗證、<b>72 株 / 24 天</b>；模型為 Random Forest（400 棵）；碳 = 乾生物量 × 0.47。萵苣是刻意挑的快速驗證作物，方法目標是遷移到森林、土壤等持久碳庫。</div>
     <div class="meta"><span>目標長度：<b>約 4:00–4:30</b></span><span>語言：<b>英文口白</b>（中文對照）</span><span>搭配簡報：<a href="record_deck.html">record_deck.html</a></span><span>← <a href="../index.html">回入口</a></span></div>
   </header>
 
@@ -58,39 +59,39 @@
     <tbody>
       <tr>
         <td class="seg">1. 問題<span class="t">0:00–0:40</span></td>
-        <td class="en">Every carbon-removal project hits the same wall: measurement. How much carbon does a plant actually hold? Today, the only way to know is to cut it down and oven-dry it for days. It kills the plant, and it's far too slow and costly to repeat. So even projects that truly capture carbon often can't prove how much — and without proof, there's no credit.
+        <td class="en">Every carbon-removal project hits the same wall: <b>measurement</b>. How much carbon does a plant actually hold? Today, the only way to know is to <b>cut it down and oven-dry it for days</b>. It <b>kills the plant</b>, and it's far too slow and costly to repeat. So even projects that truly capture carbon often <b>can't prove how much</b> — and without proof, <b>there's no credit</b>.
         <span class="scene">畫面：<b>簡報 Slide 2（Problem）</b>。標題卡 + 「harvest → oven-dry 2–3 days → destroyed」的破壞性流程示意。</span></td>
-        <td class="zh">每個碳移除專案都會撞上同一道牆：量測。一株植物到底固了多少碳？今天唯一的辦法，是把它砍下來、烘乾好幾天。這會毀掉植株，又慢又貴、無法大量重複。於是就算真的固了碳，也常常證明不了多少——沒有證據，就沒有碳權。</td>
+        <td class="zh">每個碳移除專案都會撞上同一道牆：<b>量測</b>。一株植物到底固了多少碳？今天唯一的辦法，是<b>把它砍下來、烘乾好幾天</b>。會<b>毀掉植株</b>，又慢又貴、無法大量重複。於是就算真的固了碳，也常常<b>證明不了多少</b>——沒有證據，<b>就沒有碳權</b>。</td>
       </tr>
       <tr>
         <td class="seg">2. 構想<span class="t">0:40–1:10</span></td>
-        <td class="en">LeafCarbon replaces that with a single photo. You set up a simple stand, take one picture of a plant, and the model estimates its dry weight — and from that, its carbon — each with a confidence range. Non-destructive, and a few seconds instead of a few days.
+        <td class="en">LeafCarbon replaces that with <b>a single photo</b>. You set up a simple stand, take one picture of a plant, and the model estimates its <b>dry weight</b> — and from that, its <b>carbon</b> — each with a <b>confidence range</b>. <b>Non-destructive</b>, and a few <b>seconds instead of days</b>.
         <span class="scene">畫面：<b>簡報 Slide 3（The idea）</b>。固定拍攝架（側拍）→ 一張照片 → 模型輸出（乾重 → 碳）。</span></td>
-        <td class="zh">LeafCarbon 把它換成一張照片。架個簡單的支架、拍一株植物，模型就估出它的乾重、再換算成碳量，每個都附一個信賴範圍。不破壞植株，幾秒就好，不用好幾天。</td>
+        <td class="zh">LeafCarbon 把它換成<b>一張照片</b>。架個簡單的支架、拍一株植物，模型就估出<b>乾重</b>、再換算成<b>碳量</b>，每個都附一個<b>信賴範圍</b>。<b>不破壞植株</b>，<b>幾秒就好、不用好幾天</b>。</td>
       </tr>
       <tr>
         <td class="seg">3. 實機 Demo<span class="t">1:10–2:40</span></td>
-        <td class="en">Here's the tool. I pick one photo of a single lettuce. First, the model finds the green leaves and draws a box around them. Then — this is the heart of it — it reads a few simple measurements straight off that canopy: how tall the plant is, its shape, how dense the leaves are, how much green there is. It adds the weather the plant has lived through — sunlight, warmth, UV. Every one of these numbers shows up on screen; nothing is hidden in a black box. From them, the model predicts the dry weight, with a range showing how sure it is. Now watch the same plant grow — day 7, 20, 27, 35: the box gets bigger, the numbers rise, and the estimate climbs right along with the real plant.
-        <span class="scene">畫面：<b>切到互動 Demo（demo/index.html）實機螢幕錄影</b>。依序點 Day 7 → 20 → 27 → 35：① 輸入照片 → ② 偵測冠層（綠色填色＋外框 bbox）→ ③ <b>模型輸入特徵面板</b>（株高 / 寬高比 / 密實度 / 綠覆蓋 ＋ 溫度 / 日照 / GDD / UV，數值即時帶出）→ ④ 乾重＋信賴範圍 → ⑤ 碳量（× 0.47）。讓外框與特徵數值隨日數變大、估值上升。</span></td>
-        <td class="zh">這就是工具。我選一株萵苣的一張照片。模型先找出綠葉、框出範圍。接著——這是核心——它直接從冠層讀出幾個簡單的量：植株多高、外形如何、葉子多密、綠的多寡，再加上這株植物經歷過的天氣——日照、溫度、紫外線。這些數字全都顯示在畫面上，沒有藏在黑盒裡。模型據此預測乾重，並給出一個範圍表示有多確定。看同一株長大——第 7、20、27、35 天：框愈來愈大、數字往上跳，估值也跟著真實植株一起爬升。</td>
+        <td class="en">Here's the tool. I pick one lettuce photo. <span class="dir">(① input)</span> The model finds the <b>green leaves</b> and boxes them, <span class="dir">(② detected canopy)</span> then reads a few plain numbers off that shape — <b>height, width-to-height, leaf density, greenness</b> — plus the <b>weather it grew in</b>; it's all on screen, <b>no black box</b>. <span class="dir">(③ model inputs)</span> From those it gives a <b>dry weight with a confidence range</b>, <span class="dir">(④ dry weight)</span> and carbon is simply <b>that × 0.47</b>. <span class="dir">(⑤ carbon)</span> These are <b>four different plants at different ages</b> — day 7, 20, 27, 35 — the <b>older the plant, the higher the estimate</b>. <span class="dir">(step through the four thumbnails)</span>
+        <span class="scene">畫面：<b>切到互動 Demo 實機錄影</b>，照畫面 ①→⑤ 的順序講、講到哪指到哪；最後依序點四個 Day 縮圖。注意：各天是<b>不同植株</b>（逐日烘乾取真值），不是同一株的時間序。</span></td>
+        <td class="zh">這就是工具。我選一張萵苣照片。<span class="dir">(①輸入照片)</span> 模型找出<b>綠葉</b>、框起來，<span class="dir">(②偵測冠層)</span> 再從形狀讀出幾個直白的量——<b>株高、寬高比、葉子密度、綠的多寡</b>——加上它<b>生長時的環境</b>；全顯示在畫面上，<b>沒有黑盒</b>。<span class="dir">(③模型輸入)</span> 據此給出<b>乾重和信賴範圍</b>，<span class="dir">(④乾重)</span> 碳量就是<b>它 ×0.47</b>。<span class="dir">(⑤碳量)</span> 這四張是<b>不同年齡的不同植株</b>——第 7、20、27、35 天——<b>植株愈老、估值愈高</b>。<span class="dir">(依序點四個縮圖)</span></td>
       </tr>
       <tr>
         <td class="seg">4. 碳的換算<span class="t">2:40–3:15</span></td>
-        <td class="en">Carbon comes straight from biomass. Dry plant matter is almost a fixed fraction carbon — about forty-seven percent, and across four thousand species it barely moves. So carbon is simply dry weight times zero-point-four-seven. We only have to get the weight right — no chemistry on each plant. We chose lettuce on purpose: a thirty-five-day cycle lets us test the method fast.
+        <td class="en">Carbon comes straight from biomass. Dry plant matter is almost a <b>fixed fraction carbon — about forty-seven percent</b>, and across four thousand species it barely moves. So <b>carbon is just dry weight times zero-point-four-seven</b>. We only have to get the <b>weight</b> right — <b>no chemistry on each plant</b>. We chose lettuce on purpose: a <b>thirty-five-day cycle</b> lets us test the method fast.
         <span class="scene">畫面：<b>簡報 Slide 5（Carbon = biomass × 0.47）</b>。等式大字 + IPCC 2006 / Ma et al. 2018 來源小字 + 「lettuce = fast validation crop, 35-day」標註。</span></td>
-        <td class="zh">碳量直接由生物量換算。乾掉的植物幾乎是固定比例的碳——約 47%，四千多個物種裡幾乎不變。所以碳就是乾重 × 0.47。我們只要把重量量準，不必對每株做化學分析。我們刻意挑萵苣：35 天的週期，讓我們能很快驗證方法。</td>
+        <td class="zh">碳量直接由生物量換算。乾掉的植物幾乎是<b>固定比例的碳——約 47%</b>，四千多個物種裡幾乎不變。所以<b>碳就是乾重 × 0.47</b>。我們只要把<b>重量</b>量準，<b>不必對每株做化學分析</b>。刻意挑萵苣：<b>35 天的週期</b>讓我們能很快驗證方法。</td>
       </tr>
       <tr>
         <td class="seg">5. 成績與成本<span class="t">3:15–4:05</span></td>
-        <td class="en">How well does it work? On our own dataset — seventy-two lettuce plants over twenty-four days — the estimate lands close to the real oven-dried weight, an R-squared around zero-point-six-four. And we tested it the honest way: the model is always scored on a day it has never seen. This is a measured result, not a simulation. The win is the contrast — days and a dead plant become one photo and a few seconds, and you can measure the same plant again tomorrow.
+        <td class="en">How well does it work? On our own dataset — <b>seventy-two lettuce plants over twenty-four days</b> — the estimate lands close to the real oven-dried weight, an <b>R-squared around zero-point-six-four</b>. And we tested it the honest way: the model is always <b>scored on a day it has never seen</b>. This is a <b>measured result, not a simulation</b>. The win is the contrast — <b>days and a destroyed plant become one photo and a few seconds</b> — and because nothing is harvested, you can <b>photograph the same plant again tomorrow</b>.
         <span class="scene">畫面：<b>簡報 Slide 6（Results）</b>。三個大數字 R²≈0.64 / RMSE≈0.43 g / 留一日（72 株·24 天）；右側「days + destroyed」對「seconds + repeatable」對比；可疊一段 Demo 的信賴範圍特寫。</span></td>
-        <td class="zh">效果如何？在我們自己的資料集上——72 株萵苣、橫跨 24 天——估計值很接近真實的烘乾重量，R² 約 0.64。而且我們用誠實的方式測：模型每次都被拿沒看過的一天來打分。這是實測，不是模擬。最大的價值在對比——好幾天加一株死掉的植物，變成一張照片、幾秒鐘，而且同一株明天還能再量。</td>
+        <td class="zh">效果如何？在我們自己的資料集上——<b>72 株萵苣、橫跨 24 天</b>——估計值很接近真實的烘乾重量，<b>R² 約 0.64</b>。而且用誠實的方式測：模型每次都<b>被拿沒看過的一天來打分</b>。這是<b>實測，不是模擬</b>。價值在對比——<b>好幾天加一株被毀的植株，變成一張照片、幾秒</b>——而且因為不採收，<b>同一株明天還能再拍一次</b>。</td>
       </tr>
       <tr>
         <td class="seg">6. 邊界與收尾<span class="t">4:05–4:35</span></td>
-        <td class="en">One honest boundary: this is a measurement, not a carbon credit — and lettuce is just our test crop, not the carbon sink. What we've built is a cheap, non-destructive ruler. The same ruler can move to the pools that really matter — forests, soils, restoration land — where cheap measurement is exactly what's missing today.
+        <td class="en">One honest boundary: this is a <b>measurement, not a carbon credit</b> — and <b>lettuce is just our test crop, not the carbon sink</b>. What we've built is a <b>cheap, non-destructive ruler</b>. The same ruler can move to the pools that really matter — <b>forests, soils, restoration land</b> — where cheap measurement is exactly <b>what's missing today</b>.
         <span class="scene">畫面：<b>簡報 Slide 7（Scope）→ Slide 8（Close）</b>。先打出「measurement ≠ credit · lettuce ≠ sink」誠實邊界，再切森林／土壤／復育場景，LeafCarbon 標誌定格。</span></td>
-        <td class="zh">一個誠實的邊界：這是量測，不是碳權；萵苣只是測試作物，不是碳匯標的。我們做的是一把便宜、非破壞的尺。這把尺可以移到真正重要的碳庫——森林、土壤、復育地——而那裡今天最缺的，正是便宜的量測。</td>
+        <td class="zh">一個誠實的邊界：這是<b>量測，不是碳權</b>；<b>萵苣只是測試作物，不是碳匯標的</b>。我們做的是一把<b>便宜、非破壞的尺</b>。這把尺可以移到真正重要的碳庫——<b>森林、土壤、復育地</b>——而那裡今天最缺的，正是<b>便宜的量測</b>。</td>
       </tr>
     </tbody>
   </table>

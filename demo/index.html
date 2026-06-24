@@ -169,7 +169,7 @@
   if(!D){document.body.innerHTML='<p style="color:#fff;padding:40px">demo_data.js not found</p>';return;}
   const CF=D.carbon_fraction, byKey={};
   D.samples.forEach(s=>byKey[s.day+'_'+s.plant]=s);
-  const EXAMPLES=[7,20,27,35];                       // plant 1, same side-view angle, fixed scale across the growth cycle
+  const EXAMPLES=[7,20,27,35];                       // different plants by growth stage (each day destructively dried for ground truth); same side-view angle + fixed scale
   const ex=EXAMPLES.map(d=>byKey[d+'_1']).filter(Boolean);
 
   if(D.placeholder){const ph=document.getElementById('ph');ph.style.display='block';
