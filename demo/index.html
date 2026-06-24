@@ -77,6 +77,22 @@
   button.btn{background:var(--accent);color:#06210f;border:0;border-radius:9px;padding:9px 18px;font-weight:700;cursor:pointer;font-family:var(--sans);font-size:14px}
   button.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
   button.btn:active{transform:translateY(1px)}
+
+  /* model-input features (explainable) */
+  .feats{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;opacity:.25;transform:translateY(8px);transition:.5s}
+  .feats.show{opacity:1;transform:none}
+  .feats .hd{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:11px}
+  .feats .hd b{color:var(--accent2);font-weight:700}
+  .fgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+  @media(max-width:640px){.fgrid{grid-template-columns:repeat(2,1fr)}}
+  .fitem{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+  .fitem .k{font-size:10.5px;color:var(--dim);letter-spacing:.2px}
+  .fitem .v{font-family:var(--mono);font-size:19px;font-weight:700;color:var(--text);margin-top:4px;line-height:1}
+  .fitem .v small{font-size:11px;color:var(--muted);font-weight:400}
+  .fitem.struct{border-left:2px solid var(--accent)} .fitem.struct .v{color:var(--accent)}
+  .fitem.env{border-left:2px solid var(--accent2)} .fitem.env .v{color:var(--accent2)}
+  .fnote{font-size:11px;color:var(--dim);margin-top:11px;line-height:1.5}
+  .fnote .sw{display:inline-block;width:9px;height:9px;border-radius:2px;vertical-align:baseline;margin:0 3px 0 9px}
   .foot{color:var(--dim);font-size:12.5px;margin-top:26px;border-top:1px solid var(--line);padding-top:15px}
   .foot b{color:var(--muted);font-weight:600}
 </style>
@@ -112,15 +128,30 @@
         </div>
       </div>
 
+      <div class="feats" id="feats">
+        <div class="hd">③ Model inputs · <b>explainable structure + environment features</b> — no black box</div>
+        <div class="fgrid">
+          <div class="fitem struct"><div class="k">株高 Height (bbox)</div><div class="v"><span id="f-h">—</span><small> ×frame</small></div></div>
+          <div class="fitem struct"><div class="k">寬高比 Aspect w/h</div><div class="v" id="f-asp">—</div></div>
+          <div class="fitem struct"><div class="k">密實度 Solidity</div><div class="v" id="f-sol">—</div></div>
+          <div class="fitem struct"><div class="k">冠層綠覆蓋 Canopy</div><div class="v"><span id="f-grn">—</span><small> %</small></div></div>
+          <div class="fitem env"><div class="k">溫度 Temp</div><div class="v"><span id="f-temp">—</span><small> °C</small></div></div>
+          <div class="fitem env"><div class="k">累積日照 Cum. sun</div><div class="v"><span id="f-sun">—</span><small> h</small></div></div>
+          <div class="fitem env"><div class="k">生長度日 Cum. GDD</div><div class="v" id="f-gdd">—</div></div>
+          <div class="fitem env"><div class="k">累積UV Cum. UV</div><div class="v" id="f-uv">—</div></div>
+        </div>
+        <div class="fnote"><span class="sw" style="background:var(--accent)"></span>影像側拍結構&nbsp;&nbsp;<span class="sw" style="background:var(--accent2)"></span>環境時序&nbsp;— 這 8 個值就是隨機森林的輸入，全部可解釋、可追溯。</div>
+      </div>
+
       <div class="out">
         <div class="ocard lead" id="o-bio">
-          <div class="klabel">③ Estimated biomass — dry weight</div>
+          <div class="klabel">④ Estimated biomass — dry weight</div>
           <div class="big green"><span id="v-dw">—</span> <small>g</small></div>
           <div class="ciband" id="ciband"></div>
           <div class="citext" id="ci-text">confidence interval</div>
         </div>
         <div class="ocard" id="o-carb">
-          <div class="klabel">④ Carbon&nbsp;&nbsp;( biomass × 0.47 )</div>
+          <div class="klabel">⑤ Carbon&nbsp;&nbsp;( biomass × 0.47 )</div>
           <div class="big cyan"><span id="v-c">—</span> <small>g C</small></div>
           <div class="citext" id="c-text"></div>
         </div>
@@ -138,7 +169,7 @@
   if(!D){document.body.innerHTML='<p style="color:#fff;padding:40px">demo_data.js not found</p>';return;}
   const CF=D.carbon_fraction, byKey={};
   D.samples.forEach(s=>byKey[s.day+'_'+s.plant]=s);
-  const EXAMPLES=[7,18,27,35];                       // plant 1, across the growth cycle
+  const EXAMPLES=[7,20,27,35];                       // plant 1, same side-view angle, fixed scale across the growth cycle
   const ex=EXAMPLES.map(d=>byKey[d+'_1']).filter(Boolean);
 
   if(D.placeholder){const ph=document.getElementById('ph');ph.style.display='block';
@@ -169,6 +200,7 @@
     document.getElementById('st-in').textContent='loaded';
     document.getElementById('st-det').textContent='';
     document.getElementById('detbox').classList.remove('show');
+    document.getElementById('feats').classList.remove('show');
     document.getElementById('o-bio').classList.remove('show');
     document.getElementById('o-carb').classList.remove('show');
     const scan=document.getElementById('scan'); scan.classList.remove('run');
@@ -178,10 +210,21 @@
     at(1080,()=>{
       scan.classList.remove('run');
       document.getElementById('st-in').textContent='done';
-      document.getElementById('st-det').textContent='ExG+HSV · canopy '+f(s.td_green_pct,1)+'%';
+      document.getElementById('st-det').textContent='ExG + HSV · canopy mask + bbox';
       document.getElementById('detbox').classList.add('show');
     });
-    at(1500,()=>{
+    at(1300,()=>{                                   // 從偵測到的冠層擷取出模型輸入特徵
+      document.getElementById('f-h').textContent=f(s.sd_height,2);
+      document.getElementById('f-asp').textContent=f(s.sd_aspect,2);
+      document.getElementById('f-sol').textContent=f(s.sd_solidity,2);
+      document.getElementById('f-grn').textContent=f(s.sd_green_pct,1);
+      document.getElementById('f-temp').textContent=f(s.temp,1);
+      document.getElementById('f-sun').textContent=f(s.cum_sun,0);
+      document.getElementById('f-gdd').textContent=f(s.cum_gdd,0);
+      document.getElementById('f-uv').textContent=f(s.cum_uv,1);
+      document.getElementById('feats').classList.add('show');
+    });
+    at(1750,()=>{
       document.getElementById('v-dw').textContent=f(s.pred_g,2);
       const L=x=>(x/maxW*100);
       document.getElementById('ciband').innerHTML='<div class="axis"></div>'+
@@ -190,7 +233,7 @@
       document.getElementById('ci-text').textContent='likely '+f(s.ci_lo_g,2)+'–'+f(s.ci_hi_g,2)+' g  (95% confidence interval)';
       document.getElementById('o-bio').classList.add('show');
     });
-    at(1950,()=>{
+    at(2200,()=>{
       const c=s.pred_g*CF;
       document.getElementById('v-c').textContent=f(c,3);
       document.getElementById('c-text').textContent='≈ '+f(c*1000,0)+' mg carbon per plant';

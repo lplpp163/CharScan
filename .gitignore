@@ -1,2 +1,4 @@
 tools/node_modules/
 tools/tmp_*.html
+
+demo/_seg_orig_backup/
