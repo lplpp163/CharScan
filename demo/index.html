@@ -131,16 +131,16 @@
       <div class="feats" id="feats">
         <div class="hd">③ Model inputs · <b>explainable structure + environment features</b> — no black box</div>
         <div class="fgrid">
-          <div class="fitem struct"><div class="k">株高 Height (bbox)</div><div class="v"><span id="f-h">—</span><small> ×frame</small></div></div>
-          <div class="fitem struct"><div class="k">寬高比 Aspect w/h</div><div class="v" id="f-asp">—</div></div>
-          <div class="fitem struct"><div class="k">密實度 Solidity</div><div class="v" id="f-sol">—</div></div>
-          <div class="fitem struct"><div class="k">冠層綠覆蓋 Canopy</div><div class="v"><span id="f-grn">—</span><small> %</small></div></div>
-          <div class="fitem env"><div class="k">溫度 Temp</div><div class="v"><span id="f-temp">—</span><small> °C</small></div></div>
-          <div class="fitem env"><div class="k">累積日照 Cum. sun</div><div class="v"><span id="f-sun">—</span><small> h</small></div></div>
-          <div class="fitem env"><div class="k">生長度日 Cum. GDD</div><div class="v" id="f-gdd">—</div></div>
-          <div class="fitem env"><div class="k">累積UV Cum. UV</div><div class="v" id="f-uv">—</div></div>
+          <div class="fitem struct"><div class="k">Plant height (bbox)</div><div class="v"><span id="f-h">—</span><small> ×frame</small></div></div>
+          <div class="fitem struct"><div class="k">Aspect (w / h)</div><div class="v" id="f-asp">—</div></div>
+          <div class="fitem struct"><div class="k">Solidity</div><div class="v" id="f-sol">—</div></div>
+          <div class="fitem struct"><div class="k">Canopy cover</div><div class="v"><span id="f-grn">—</span><small> %</small></div></div>
+          <div class="fitem env"><div class="k">Temperature</div><div class="v"><span id="f-temp">—</span><small> °C</small></div></div>
+          <div class="fitem env"><div class="k">Cumulative sun</div><div class="v"><span id="f-sun">—</span><small> h</small></div></div>
+          <div class="fitem env"><div class="k">Cumulative GDD</div><div class="v" id="f-gdd">—</div></div>
+          <div class="fitem env"><div class="k">Cumulative UV</div><div class="v" id="f-uv">—</div></div>
         </div>
-        <div class="fnote"><span class="sw" style="background:var(--accent)"></span>影像側拍結構&nbsp;&nbsp;<span class="sw" style="background:var(--accent2)"></span>環境時序&nbsp;— 這 8 個值就是隨機森林的輸入，全部可解釋、可追溯。</div>
+        <div class="fnote"><span class="sw" style="background:var(--accent)"></span>side-view structure&nbsp;&nbsp;<span class="sw" style="background:var(--accent2)"></span>cumulative environment&nbsp;— these 8 values are the Random Forest's inputs: fully explainable and traceable.</div>
       </div>
 
       <div class="out">
@@ -213,7 +213,7 @@
       document.getElementById('st-det').textContent='ExG + HSV · canopy mask + bbox';
       document.getElementById('detbox').classList.add('show');
     });
-    at(1300,()=>{                                   // 從偵測到的冠層擷取出模型輸入特徵
+    at(1300,()=>{                                   // extract model-input features from the detected canopy
       document.getElementById('f-h').textContent=f(s.sd_height,2);
       document.getElementById('f-asp').textContent=f(s.sd_aspect,2);
       document.getElementById('f-sol').textContent=f(s.sd_solidity,2);
